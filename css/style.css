@@ -1,0 +1,117 @@
+/* główne */
+
+body {
+	background: #242736;
+	color: #FFB357;
+	font-family: 'Exo', sans-serif;
+	font-size: 18px;
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+	font-weight: normal;
+	margin: 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	color: #FDC96D;
+}
+
+h1 {
+	font-size: 3.4em;
+}
+
+h2 {
+	font-size: 1.8em;
+}
+
+h3 {
+	font-size: 1.4em;
+	text-transform: uppercase;
+}
+
+em {
+	font-style: normal;
+}
+
+a {
+	color: #FFB357;
+	transition: all 0.2s;
+}
+
+em,
+a:hover {
+	color: #fec;
+	text-shadow: #f90 0 0 10px;
+}
+
+/* klasy */
+
+.menu {
+	margin: 0;
+	padding: 0;
+	font-size: 1.15em;
+}
+
+.menu li {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	transition: all 0.3s;
+	position: relative;
+}
+
+.menu .active:after {
+	content: "";
+	height: 3px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #5D3A3A;
+}
+
+.menu li:hover {
+	background: #5D3A3A;
+}
+
+.menu a {
+	display: block;
+	text-decoration: none;
+	padding: 0.6em;
+}
+
+/* specialne elementy */
+
+body > * {
+	overflow: hidden;
+}
+
+body > header {
+	background-image: linear-gradient(to right, #392F38, #5D3A3A);
+	text-align: center;
+}
+
+body > nav {
+	text-align: center;
+}
+
+body > nav,
+body > footer {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+body > section {
+	border-bottom: solid 2px #5D3A3A;
+}
+
+body > section:last-child {
+	border-bottom: none;
+}

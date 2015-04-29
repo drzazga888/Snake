@@ -1,0 +1,358 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"is",
+				"isBitSetted"
+			],
+			[
+				"isB",
+				"isBit2Setted"
+			],
+			[
+				"E",
+				"ENUM_2"
+			],
+			[
+				"nu",
+				"numItems"
+			],
+			[
+				"re",
+				"revertedTable"
+			],
+			[
+				"ve",
+				"vertexShader"
+			],
+			[
+				"progress",
+				"progressCount"
+			],
+			[
+				"fo",
+				"formatCode"
+			],
+			[
+				"Call",
+				"CallbackTest"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"intall",
+				"Package Control: Install Package"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 305.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/kamil/Pulpit/Snake"
+	],
+	"file_history":
+	[
+		"/media/kamil/Windows 7/Users/Kamil/Desktop/must-do.txt",
+		"/home/kamil/Pulpit/PitE-mock-up/authentication.html",
+		"/home/kamil/Pulpit/PitE-mock-up/assets/css/main.css",
+		"/home/kamil/Pulpit/PitE-mock-up/index.html",
+		"/home/kamil/Pulpit/reogranised/authentication.html",
+		"/home/kamil/Pulpit/reogranised/assets/css/main.css",
+		"/home/kamil/Pulpit/reogranised/assets/images/logo.png",
+		"/home/kamil/Pulpit/reogranised/index.html",
+		"/home/kamil/Pulpit/reogranised/single-product-sidebar.html",
+		"/home/kamil/Pulpit/reogranised/switchstylesheet/switchstylesheet.js",
+		"/home/kamil/Pulpit/reogranised/contact.html",
+		"/home/kamil/Pulpit/reogranised/checkout.html",
+		"/home/kamil/Pulpit/reogranised/category-grid-2.html",
+		"/home/kamil/Pulpit/reogranised/cart.html",
+		"/home/kamil/Pulpit/reogranised/about.html",
+		"/home/kamil/Pulpit/reogranised/assets/css/font-awesome.min.css",
+		"/home/kamil/Pulpit/reogranised/assets/css/fonts/fontawesome-webfont.eot",
+		"/home/kamil/Pulpit/reogranised/assets/css/fonts/fontawesome-webfont.svg",
+		"/home/kamil/Pulpit/reogranised/assets/css/fonts/fontawesome-webfont.woff",
+		"/home/kamil/Pulpit/reogranised/ftpsync.settings",
+		"/home/kamil/Pulpit/reogranised/PitE-mock-up.sublime-project",
+		"/home/kamil/Pulpit/atmega-test/TestHeader.h",
+		"/home/kamil/Pulpit/atmega-test/main.cpp",
+		"/home/kamil/Pulpit/atmega-test/TimerRes.cpp",
+		"/home/kamil/Pulpit/atmega-test/TimerRes.h",
+		"/home/kamil/Pulpit/test.cpp",
+		"/media/kamil/Dokumenty/Strony/webGL/easyGL.js",
+		"/media/kamil/Dokumenty/Strony/webGL/script.js",
+		"/media/kamil/Dokumenty/Strony/webGL/index.html",
+		"/home/kamil/Pulpit/ang/3-telefony.csv",
+		"/home/kamil/Pulpit/ang/3-rzeczowniki.csv",
+		"/media/kamil/Dokumenty/Strony/webGL/GLutaminian.js",
+		"/home/kamil/Pulpit/resp_table/script.js",
+		"/home/kamil/Pulpit/resp_table/style.css",
+		"/home/kamil/Pulpit/resp_table/index.html",
+		"/home/kamil/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/media/kamil/Dokumenty/Strony/webGL/shaderPS.cpp",
+		"/media/kamil/Dokumenty/Strony/webGL/shaderVS.cpp",
+		"/home/kamil/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/media/kamil/Dokumenty/Strony/webGL/style.css",
+		"/home/kamil/Pulpit/responsive-table/script.js",
+		"/home/kamil/Pulpit/responsive-table/style.css",
+		"/home/kamil/Pulpit/responsive-table/index.html",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/Formatter.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/ControllerManager.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/Configuration.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/main/App.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/CommandLineController.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/HelpController.java",
+		"/home/kamil/Pulpit/IO_github/User/bercik/console_text_formating.txt",
+		"/home/kamil/Pulpit/IO_github/User/bercik/bercik_tbajorek_conversation.txt",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/MainController.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/display/IController.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/input/UTFHolder.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/input/NonBlockingInput.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/client/src/main/java/input/IRedrawable.java",
+		"/home/kamil/Pulpit/IO_github/App/chat/Chat.iml",
+		"/home/kamil/Pulpit/callbacks-java/Event.java",
+		"/home/kamil/Pulpit/callbacks-java/Callback.java",
+		"/home/kamil/Pulpit/callbacks-java/InterestingEvent.java",
+		"/home/kamil/Pulpit/callbacks-java/EventNotifier.java",
+		"/home/kamil/Pulpit/callbacks-java/CallMe.java",
+		"/home/kamil/Pulpit/IO_github/.gitignore",
+		"/home/kamil/Pulpit/webGL/style.css"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Dost",
+			"--><",
+			"sidebar-page",
+			" sf_validated=\"1\"",
+			"<div name",
+			"<button type=\"submit\" ",
+			"<select",
+			"action=\"\"",
+			"wish-compare",
+			"tag",
+			"tag:",
+			"availability",
+			"social-row",
+			"logo",
+			"search-field",
+			"search-button",
+			"search-field",
+			"categories-filter",
+			"search-area",
+			"search-button",
+			"categories-filter",
+			"search-are",
+			"categories-filter",
+			"border",
+			"rejestracja.html",
+			"loadmore-holder text-center",
+			"banner-holder",
+			"container no-padding",
+			"carousel-holder",
+			"btn-add-to-wishlist",
+			"settin",
+			"setti",
+			"change-colors",
+			"$"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"action=\"#\"",
+			"jQuery"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Pulpit/kamildrzazga.pl/kamildrzazga.pl.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 160.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
