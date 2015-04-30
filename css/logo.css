@@ -1,0 +1,10 @@
+#logo {
+	display: block;
+	margin: 20px auto;
+	/* for debug below */
+	box-shadow: inset red 0 0 5px;
+}
+
+#logo .body {
+	fill: #FFB357;
+}

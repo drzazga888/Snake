@@ -79,7 +79,7 @@ a:hover {
 }
 
 .menu li:hover {
-	background: #5D3A3A;
+	background: #392F38;
 }
 
 .menu a {
@@ -95,7 +95,8 @@ body > * {
 }
 
 body > header {
-	background-image: linear-gradient(to right, #392F38, #5D3A3A);
+	/*background-image: linear-gradient(to right, #392F38, #5D3A3A);*/
+	background-image: radial-gradient(farthest-corner at 50% 100%, #5D3A3A 0%, #392F38 100%);
 	text-align: center;
 }
 
@@ -112,6 +113,6 @@ body > section {
 	border-bottom: solid 2px #5D3A3A;
 }
 
-body > section:last-child {
+body > section:last-of-type {
 	border-bottom: none;
 }
