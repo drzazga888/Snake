@@ -4,7 +4,6 @@ $(document).ready(function(){
 
 //--------------------------------------
 
-function stickToTop(obj)
-{
-
+function stickToTop(obj){
+	
 }

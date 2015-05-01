@@ -1,10 +1,18 @@
 #logo {
 	display: block;
 	margin: 20px auto;
-	/* for debug below */
-	box-shadow: inset red 0 0 5px;
 }
 
 #logo .body {
 	fill: #FFB357;
+}
+
+#logo .tongue {
+	fill: none;
+	stroke: #FFB357;
+	stroke-width: 4px;
+}
+
+#logo .eye {
+	fill: #242736;
 }
