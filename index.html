@@ -15,11 +15,16 @@
 
 	<header>
 		<svg width="300" height="80" id="logo">
-			<rect x="140" y="10" width="160" height="60" class="body" />
 			<ellipse cx="120" cy="40" rx="70" ry="40" class="body" />
+			<polygon points="140,10 260,10 200,70 140,70" class="body" />
+			<polygon points="280,10 300,10 240,70 220,70" class="pattern" />
+			<polygon points="200,10 220,10 210,40" class="pattern" />
+			<polygon points="175,70 195,70 185,40" class="pattern" />
 			<path d="M2,40 C17,80 37,0 52,40" class="tongue" />
 			<circle cx="90" cy="25" r="8" class="eye" />
 			<circle cx="90" cy="55" r="8" class="eye" />
+			<circle cx="93" cy="22" r="2" class="eye-reflects" />
+			<circle cx="93" cy="52" r="2" class="eye-reflects" />
 		</svg>
 		<h1>Snake</h1>
 		<h2>Gra wykonana w technologii <em>HTML5</em></h2>
@@ -34,9 +39,17 @@
 	</nav>
 
 	<section>
-		<h3>Tytuł sekcji</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at feugiat sem. Sed faucibus sagittis velit, venenatis bibendum sapien. Donec condimentum, nisi a imperdiet commodo, augue orci luctus turpis, pellentesque sodales velit tortor at augue. Nullam a nunc bibendum, scelerisque metus sed, venenatis eros. Vestibulum at pretium metus, et semper dui. Etiam eu neque sit amet nisi volutpat semper. Curabitur sodales erat erat, in commodo arcu rhoncus vitae. Phasellus dolor magna, tincidunt ut arcu ut, pellentesque pharetra ex.</p>
-		<p>Phasellus bibendum elementum dui. Morbi interdum quam vitae diam ultrices molestie. Donec vestibulum metus ac nulla venenatis, eget bibendum ante tempus. Pellentesque volutpat lacus sed lectus consequat, quis tincidunt felis lacinia. Cras eu urna at erat fermentum gravida. Fusce dignissim lectus quis tellus molestie, quis tempus orci porta. Aliquam vitae velit libero. Integer ultrices commodo mi in malesuada. Ut iaculis interdum lorem nec auctor. Sed vitae erat felis. Proin eget nulla dictum, volutpat lectus et, vulputate augue. Sed arcu elit, scelerisque egestas sem vel, convallis dapibus turpis.</p>
+		<h3>Sprawdzanie, jak działa javascript</h3>
+		<div class="button-row">
+			<button onclick="console.log('button clicked!')">Naciśnij przycisk</button>
+			<button>Naciśnij przycisk</button>
+			<button>Naciśnij przycisk</button>
+		</div>
+		<div class="button-row">
+			<button>Naciśnij przycisk</button>
+			<button>Naciśnij przycisk</button>
+			<button>Naciśnij przycisk</button>
+		</div>
 	</section>
 
 	<section>

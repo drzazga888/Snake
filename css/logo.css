@@ -1,6 +1,6 @@
 #logo {
 	display: block;
-	margin: 20px auto;
+	margin: 35px auto 20px;
 }
 
 #logo .body {
@@ -13,6 +13,14 @@
 	stroke-width: 4px;
 }
 
+#logo .pattern {
+	fill: #c87;
+}
+
 #logo .eye {
 	fill: #242736;
+}
+
+#logo .eye-reflects {
+	fill: #fff;
 }

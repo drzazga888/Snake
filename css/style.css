@@ -52,7 +52,39 @@ a:hover {
 	text-shadow: #f90 0 0 10px;
 }
 
+button {
+	display: inline-block;
+	margin: 10px;
+	vertical-align: middle;
+	padding: 0.5em;
+	cursor: pointer;
+	color: #FFB357;
+	background: #392F38;
+	border: none;
+	border-bottom: solid 2px #5D3A3A;
+	border-radius: 5px;
+	font-family: 'Exo', sans-serif;
+	font-size: 18px;
+	transition: all 0.2s;
+	position: relative;
+	top: 0;
+}
+
+button:hover {
+	background-color: #5D3A3A;
+	border-color: #FFB357;
+}
+
+button:active {
+	top: 2px;
+}
+
 /* klasy */
+
+.button-row {
+	margin: 10px;
+	margin-top: -10px;
+}
 
 .menu {
 	margin: 0;
