@@ -9,7 +9,11 @@
 	<link rel="stylesheet" href="css/logo.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="js/scripts.css"></script>
+	<script src="js/Field.js"></script>
+	<script src="js/EmptyField.js"></script>
+	<script src="js/AppleField.js"></script>
+	<script src="js/Game.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 <body>
 
@@ -41,14 +45,9 @@
 	<section>
 		<h3>Sprawdzanie, jak działa javascript</h3>
 		<div class="button-row">
-			<button onclick="console.log('button clicked!')">Naciśnij przycisk</button>
-			<button>Naciśnij przycisk</button>
-			<button>Naciśnij przycisk</button>
-		</div>
-		<div class="button-row">
-			<button>Naciśnij przycisk</button>
-			<button>Naciśnij przycisk</button>
-			<button>Naciśnij przycisk</button>
+			<button onclick="new Game({rows: 4, cols: 6});">Utwórz obiekt Game</button>
+			<button onclick="testInstanceOf();">Testuj instanceof</button>
+			<button onclick="testObjects();">Testuj instanceof</button>
 		</div>
 	</section>
 

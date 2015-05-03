@@ -1,10 +1,14 @@
 /* główne */
 
-body {
-	background: #242736;
+body,
+button {
 	color: #FFB357;
 	font-family: 'Exo', sans-serif;
 	font-size: 18px;
+}
+
+body {
+	background: #242736;
 	margin: 0;
 }
 
@@ -58,13 +62,10 @@ button {
 	vertical-align: middle;
 	padding: 0.5em;
 	cursor: pointer;
-	color: #FFB357;
 	background: #392F38;
 	border: none;
 	border-bottom: solid 2px #5D3A3A;
 	border-radius: 5px;
-	font-family: 'Exo', sans-serif;
-	font-size: 18px;
 	transition: all 0.2s;
 	position: relative;
 	top: 0;
@@ -73,6 +74,7 @@ button {
 button:hover {
 	background-color: #5D3A3A;
 	border-color: #FFB357;
+	color: #FDC96D;
 }
 
 button:active {
