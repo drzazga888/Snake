@@ -88,6 +88,10 @@ button:active {
 	margin-top: -10px;
 }
 
+.button-row.center {
+	text-align: center;
+}
+
 .menu {
 	margin: 0;
 	padding: 0;
@@ -149,4 +153,12 @@ body > section {
 
 body > section:last-of-type {
 	border-bottom: none;
+}
+
+#game-canvas {
+	background: #ccc;
+	margin: 20px auto;
+	box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 10px;
+	display: block;
+	max-width: 100%;
 }

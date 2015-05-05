@@ -1,10 +1,11 @@
-function EmptyField() {
-	Field.call(this);
-}
+EmptyField = function(context, position, scale) {
+	Field.call(this, context, position, scale);
+};
 
 EmptyField.prototype = Object.create(Field.prototype);
 EmptyField.prototype.constructor = EmptyField;
 
 EmptyField.prototype.draw = function() {
-	return "-";
+	this.context.fillStyle = "#fff";
+	this.drawRect();
 };

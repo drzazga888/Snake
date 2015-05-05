@@ -1,12 +1,9 @@
-function testInstanceOf() {
-	var name = new EmptyField;
-	console.log(name instanceof EmptyField);
-	console.log(name instanceof Field);
-	console.log(name instanceof AppleField);
-}
+var game;
 
-function testObjects() {
-	console.log({});
-	console.log([]);
-	console.log("");
+$(document).ready(function(){
+	startGame();
+});
+
+function startGame() {
+	game = new Game("game-canvas", new Position(8, 12));
 }
