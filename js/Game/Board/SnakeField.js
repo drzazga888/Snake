@@ -11,11 +11,9 @@ SnakeField.bodyLength = 0;
 SnakeField.head = Position();
 
 SnakeField.prototype.draw = function() {
-	this.context.fillStyle = this.getColorFromPart();
+	this.context.fillStyle = "#0f0";
 	this.drawRect();
-};
-
-SnakeField.prototype.getColorFromPart = function() {
-	var percantPart = Math.atan(this.part) * (200 / Math.PI);
-	return "rgb(0%, " + percantPart + "%, 100%)";
+	this.context.font = "20px sans-serif";
+	this.context.fillStyle = "#000";
+	this.context.fillText(this.part, this.position.col * this.scale + 20, this.position.row * this.scale + 20);
 };

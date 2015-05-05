@@ -2,7 +2,7 @@
 * Konstruktor gry:
 * - tworzy element canvas
 * - oblicza szerokość pól na postawie szerokości i wysokości elementu canvas
-* - inicjuje pola (size, board)
+* - inicjuje pola (board)
 * - kładzie węża
 * - kładzie jabłko na planszy
 * - pierwsze malowanie planszy
@@ -10,17 +10,17 @@
 Game = function(canvasID, size) {
 	// tworzy element canvas
 	var canvas = document.getElementById(canvasID);
+	var context = null;
 	if (canvas.getContext)
-		this.context = canvas.getContext('2d');
+		context = canvas.getContext('2d');
 	else {
 		console.error("Nie można było zainicjować elementu canvas.");
 		return;
 	}
 	// oblicza szerokość pól na postawie szerokości i wysokości elementu canvas
-	this.scale = canvas.width / size.col;
-	// inicjuje pola (size, board)
-	this.size = size;
-	this.board = new Board(this.context, size, this.scale);
+	var scale = canvas.width / size.col;
+	// inicjuje pola (board)
+	this.board = new Board(context, size, scale);
 	// kładzie węża
 	this.board.setField(new Position(0, 0), SnakeField);
 	this.board.setField(new Position(0, 1), SnakeField);
@@ -31,21 +31,8 @@ Game = function(canvasID, size) {
 	this.draw();
 };
 
-/**
-* Kładzie jabłko na planszy (losowanie pozycji aż będzie pusta - EmptyField)
-*/
-Game.prototype.placeApple = function() {
-	var position = new Position();
-	do {
-		position.row = Math.floor(Math.random() * this.size.row);
-		position.col = Math.floor(Math.random() * this.size.col);
-		
-	} while (!(this.board.getField(position) instanceof EmptyField));
-	this.board.setField(position, AppleField);
-};
-
 Game.prototype.move = function(direction) {
-	var head = SnakeField.head;
+	var head = new Position(SnakeField.head.row, SnakeField.head.col);
 	switch (direction)
 	{
 		case "left":
@@ -62,17 +49,12 @@ Game.prototype.move = function(direction) {
 			break;
 	}
 	this.board.setField(head, SnakeField);
-	this.board.foreach(function(field) {
+	this.board.foreach(function(field, board) {
 		if (field instanceof SnakeField)
 		{
 			--field.part;
 			if (field.part == 0)
-			{
-				var context = field.context;
-				var position = field.position;
-				var scale = field.scale;
-				field = new EmptyField(context, position, scale);
-			}
+				board.setField(field.position, EmptyField);
 		}
 	});
 	--SnakeField.bodyLength;

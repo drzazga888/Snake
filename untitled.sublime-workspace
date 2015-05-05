@@ -91,71 +91,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4707,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/scripts.js",
-			"settings":
-			{
-				"buffer_size": 138,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/Position.js",
-			"settings":
-			{
-				"buffer_size": 137,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/Game.js",
-			"settings":
-			{
-				"buffer_size": 2185,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/Board.js",
-			"settings":
-			{
-				"buffer_size": 917,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/Field.js",
-			"settings":
-			{
-				"buffer_size": 276,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/EmptyField.js",
-			"settings":
-			{
-				"buffer_size": 297,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/AppleField.js",
-			"settings":
-			{
-				"buffer_size": 297,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/SnakeField.js",
-			"settings":
-			{
-				"buffer_size": 602,
+				"buffer_size": 4856,
 				"line_ending": "Windows"
 			}
 		}
@@ -246,13 +182,24 @@
 	"expanded_folders":
 	[
 		"/home/kamil/Pulpit/Snake",
-		"/home/kamil/Pulpit/Snake/js"
+		"/home/kamil/Pulpit/Snake/js",
+		"/home/kamil/Pulpit/Snake/js/Game",
+		"/home/kamil/Pulpit/Snake/js/Game/Board"
 	],
 	"file_history":
 	[
-		"/home/kamil/Pulpit/Snake/css/style.css",
-		"/home/kamil/Pulpit/Snake/index.html",
+		"/home/kamil/Pulpit/Snake/js/SnakeField.js",
+		"/home/kamil/Pulpit/Snake/js/EmptyField.js",
+		"/home/kamil/Pulpit/Snake/js/Field.js",
+		"/home/kamil/Pulpit/Snake/js/Board.js",
+		"/home/kamil/Pulpit/Snake/js/Apple.js",
+		"/home/kamil/Pulpit/Snake/js/Snake.js",
 		"/home/kamil/Pulpit/Snake/js/Game.js",
+		"/home/kamil/Pulpit/Snake/js/Position.js",
+		"/home/kamil/Pulpit/Snake/js/scripts.js",
+		"/home/kamil/Pulpit/Snake/index.html",
+		"/home/kamil/Pulpit/Snake/js/AppleField.js",
+		"/home/kamil/Pulpit/Snake/css/style.css",
 		"/home/kamil/Pulpit/Snake/js/Dim.js",
 		"/C/Users/Kamil/Desktop/Snake/js/Board.js",
 		"/C/Users/Kamil/Desktop/Snake/js/Drawer.js",
@@ -329,7 +276,7 @@
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -408,15 +355,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4707,
+						"buffer_size": 4856,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								463,
-								463
+								844,
+								844
 							]
 						],
 						"settings":
@@ -425,235 +372,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 570.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/scripts.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 138,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								127,
-								127
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/Position.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								129,
-								129
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/Game.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2185,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1973,
-								1973
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 855.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/Board.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 917,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								544,
-								544
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "js/Field.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 276,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								273,
-								273
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": -0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "js/EmptyField.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 297,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								278,
-								278
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "js/AppleField.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 297,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								294,
-								294
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "js/SnakeField.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 602,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								161,
-								161
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -744,7 +466,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 160.0,
+	"side_bar_width": 249.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
