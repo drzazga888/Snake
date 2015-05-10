@@ -11,16 +11,10 @@ Board = function(context, size, scale) {
 	};
 }
 
-/**
-* Ustawianie odpowiedniego pola na konkretnej pozycji
-*/
 Board.prototype.setField = function(position, fieldType) {
 	this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale);
 };
 
-/**
-* Pobranie odpowiedniego pola z pozycji
-*/
 Board.prototype.getField = function(position) {
 	return this.fields[position.row][position.col];
 };
@@ -30,4 +24,10 @@ Board.prototype.foreach = function(callback) {
 		for (var col_i = 0; col_i < this.size.col; col_i++)
 			callback(this.getField(new Position(row_i, col_i)), this);
 	};
+};
+
+Board.prototype.draw = function() {
+	this.foreach(function(field) {
+		field.draw();
+	});
 };

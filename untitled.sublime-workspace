@@ -91,8 +91,83 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4856,
+				"buffer_size": 4880,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/Game/Position.js",
+			"settings":
+			{
+				"buffer_size": 137,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/Game/Snake.js",
+			"settings":
+			{
+				"buffer_size": 781,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "SnakeField = function(context, position, scale) {\n	Field.call(this, context, position, scale);\n	this.part = ++this.snake.bodyLength;\n};\n\nSnakeField.prototype = Object.create(Field.prototype);\nSnakeField.prototype.constructor = SnakeField;\n\nSnakeField.bodyLength = 0;\nSnakeField.head = Position();\n\nSnakeField.prototype.draw = function() {\n	this.context.fillStyle = \"#0f0\";\n	this.drawRect();\n	this.context.font = \"20px sans-serif\";\n	this.context.fillStyle = \"#000\";\n	this.context.fillText(this.part, this.position.col * this.scale + 20, this.position.row * this.scale + 20);\n};",
+			"file": "js/Game/Board/SnakeField.js",
+			"file_size": 645,
+			"file_write_time": 130755627066781965,
+			"settings":
+			{
+				"buffer_size": 576,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/Game/Board/Field.js",
+			"settings":
+			{
+				"buffer_size": 288,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/Game/Board/EmptyField.js",
+			"settings":
+			{
+				"buffer_size": 297,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/Game/Board/AppleField.js",
+			"settings":
+			{
+				"buffer_size": 297,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/Game/Game.js",
+			"settings":
+			{
+				"buffer_size": 855,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/Game/Apple.js",
+			"settings":
+			{
+				"buffer_size": 476,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/Game/Board/Board.js",
+			"settings":
+			{
+				"buffer_size": 920,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -119,8 +194,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 201.0,
-		"last_filter": "js",
+		"height": 222.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -160,7 +235,7 @@
 				"Set Syntax: JavaScript"
 			]
 		],
-		"width": 449.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -188,6 +263,8 @@
 	],
 	"file_history":
 	[
+		"/home/kamil/Pulpit/Snake/js/Game/Apple.js",
+		"/home/kamil/Pulpit/Snake/js/Game/Game.js",
 		"/home/kamil/Pulpit/Snake/js/SnakeField.js",
 		"/home/kamil/Pulpit/Snake/js/EmptyField.js",
 		"/home/kamil/Pulpit/Snake/js/Field.js",
@@ -346,7 +423,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -355,15 +432,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4856,
+						"buffer_size": 4880,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								844,
-								844
+								2470,
+								2470
 							]
 						],
 						"settings":
@@ -372,10 +449,264 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
+						"translation.y": 874.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/Game/Position.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 137,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/Game/Snake.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/Game/Board/SnakeField.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								132,
+								132
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/Game/Board/Field.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/Game/Board/EmptyField.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 297,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "js/Game/Board/AppleField.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 297,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "js/Game/Game.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 855,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								696,
+								696
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "js/Game/Apple.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								179,
+								179
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "js/Game/Board/Board.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 920,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								743,
+								743
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -444,7 +775,7 @@
 		[
 			[
 				"",
-				"~/Pulpit/kamildrzazga.pl/kamildrzazga.pl.sublime-project"
+				"~/Pulpit/PitE-mock-up/PitE-mock-up.sublime-project"
 			]
 		],
 		"width": 380.0

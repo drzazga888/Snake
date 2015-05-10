@@ -1,11 +1,12 @@
 SnakeField = function(context, position, scale) {
 	Field.call(this, context, position, scale);
-	this.part = ++SnakeField.bodyLength;
-	SnakeField.head = position;
+	this.snake = snake;
+	this.part = ++this.snake.bodyLength;
+	this.snake.head = position;
 };
 
 SnakeField.prototype = Object.create(Field.prototype);
-SnakeField.prototype.constructor = AppleField;
+SnakeField.prototype.constructor = SnakeField;
 
 SnakeField.bodyLength = 0;
 SnakeField.head = Position();
