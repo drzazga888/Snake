@@ -12,6 +12,6 @@ Apple.prototype.put = function() {
 	do {
 		this.position.row = Math.floor(Math.random() * this.board.size.row);
 		this.position.col = Math.floor(Math.random() * this.board.size.col);
-	} while (!(this.board.getField(position) instanceof EmptyField));
-	this.board.setField(position, AppleField);
+	} while (!(this.board.getField(this.position) instanceof EmptyField));
+	this.board.setField(this.position, AppleField);
 };

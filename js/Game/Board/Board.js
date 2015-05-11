@@ -11,8 +11,15 @@ Board = function(context, size, scale) {
 	};
 }
 
+Board.prototype.registerSnake = function(snake) {
+	this.snake = snake;
+};
+
 Board.prototype.setField = function(position, fieldType) {
-	this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale);
+	if (fieldType === SnakeField)
+		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale, this.snake);
+	else
+		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale);
 };
 
 Board.prototype.getField = function(position) {
@@ -27,7 +34,7 @@ Board.prototype.foreach = function(callback) {
 };
 
 Board.prototype.draw = function() {
-	this.foreach(function(field) {
+	this.foreach(function(field, board) {
 		field.draw();
 	});
 };

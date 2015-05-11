@@ -6,5 +6,23 @@ $(document).ready(function(){
 
 function startGame() {
 	game = new Game("game-canvas", new Position(8, 12));
-	console.log(game);
 }
+
+window.addEventListener("keydown", function(event) {
+	event.preventDefault();
+	switch (event.keyCode)
+	{
+		case 37:
+			game.snake.move('left');
+			break;
+		case 38:
+			game.snake.move('up');
+			break;
+		case 39:
+			game.snake.move('right');
+			break;
+		case 40:
+			game.snake.move('down');
+			break;
+	}
+});

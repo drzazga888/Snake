@@ -1,12 +1,3 @@
-/**
-* Konstruktor gry:
-* - tworzy element canvas
-* - oblicza szerokość pól na postawie szerokości i wysokości elementu canvas
-* - inicjuje pola (board)
-* - kładzie węża
-* - kładzie jabłko na planszy
-* - pierwsze malowanie planszy
-*/
 Game = function(canvasID, size) {
 	// tworzy element canvas
 	var canvas = document.getElementById(canvasID);
@@ -22,9 +13,11 @@ Game = function(canvasID, size) {
 	// inicjuje pola (board)
 	this.board = new Board(context, size, scale);
 	// kładzie węża
-	this.snake = new Snake(board);
+	this.snake = new Snake(this.board);
+	this.board.registerSnake(this.snake);
+	this.snake.put();
 	// kładzie jabłko na planszy
-	this.apple = new Apple(board);
+	this.apple = new Apple(this.board);
 	// pierwsze malowanie planszy
-	this.draw();
+	this.board.draw();
 };

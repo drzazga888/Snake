@@ -1,15 +1,11 @@
-SnakeField = function(context, position, scale) {
+SnakeField = function(context, position, scale, snake) {
 	Field.call(this, context, position, scale);
-	this.snake = snake;
-	this.part = ++this.snake.bodyLength;
-	this.snake.head = position;
+	this.part = ++snake.bodyLength;
+	snake.head = position;
 };
 
 SnakeField.prototype = Object.create(Field.prototype);
 SnakeField.prototype.constructor = SnakeField;
-
-SnakeField.bodyLength = 0;
-SnakeField.head = Position();
 
 SnakeField.prototype.draw = function() {
 	this.context.fillStyle = "#0f0";

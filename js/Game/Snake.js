@@ -1,30 +1,34 @@
 Snake = function(board)
 {
 	this.board = board;
-	this.bodyLength = Number(0);
+	this.bodyLength = 0;
 	this.head = Position();
+}
+
+Snake.prototype.put = function() {
 	this.board.setField(new Position(0, 0), SnakeField);
 	this.board.setField(new Position(0, 1), SnakeField);
 	this.board.setField(new Position(0, 2), SnakeField);
-}
+};
 
 Snake.prototype.move = function(direction) {
+	var newPosition = new Position(this.head.row, this.head.col);
 	switch (direction)
 	{
 		case "left":
-			--this.head.col;
+			--newPosition.col;
 			break;
 		case "right":
-			++this.head.col;
+			++newPosition.col;
 			break;
 		case "up":
-			--this.head.row;
+			--newPosition.row;
 			break;
 		case "down":
-			++this.head.row;
+			++newPosition.row;
 			break;
 	}
-	this.board.setField(head, SnakeField);
+	this.board.setField(newPosition, SnakeField);
 	this.board.foreach(function(field, board) {
 		if (field instanceof SnakeField)
 		{
@@ -33,6 +37,6 @@ Snake.prototype.move = function(direction) {
 				board.setField(field.position, EmptyField);
 		}
 	});
-	--SnakeField.bodyLength;
-	this.draw();
+	--this.bodyLength;
+	this.board.draw();
 };
