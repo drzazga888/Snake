@@ -1,36 +1,37 @@
 var game;
 
 $(document).ready(function(){
-	startGame();
-	drawSnakeHead();
-	drawSnakeBody();
-	drawSnakeBodyCorner();
-	drawSnakeTail();
-	drawApple();
+    drawSnakeHead();
+    drawSnakeBody();
+    drawSnakeBodyCorner();
+    drawSnakeTail();
+    drawApple();
+    game = new Game({
+        canvasID: "game-canvas",
+        size: {
+            cols: 12,
+            rows: 8
+        }
+    });
 	window.setInterval(function() {
 		game.snake.move();
 	}, 300);
-});
-
-function startGame() {
-	game = new Game("game-canvas", new Position(8, 12));
-}
-
-window.addEventListener("keydown", function(event) {
-	switch (event.keyCode) {
-		case 65:
-			game.snake.changeDirection('left');
-			break;
-		case 87:
-			game.snake.changeDirection('up');
-			break;
-		case 68:
-			game.snake.changeDirection('right');
-			break;
-		case 83:
-			game.snake.changeDirection('down');
-			break;
-	}
+    window.addEventListener("keydown", function(event) {
+        switch (event.keyCode) {
+            case 65:
+                game.snake.changeDirection('left');
+                break;
+            case 87:
+                game.snake.changeDirection('up');
+                break;
+            case 68:
+                game.snake.changeDirection('right');
+                break;
+            case 83:
+                game.snake.changeDirection('down');
+                break;
+        }
+    });
 });
 
 function drawSnakeHead() {

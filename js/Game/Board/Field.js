@@ -1,9 +1,13 @@
-Field = function(context, position, scale) {
-	this.context = context;
+function Field(board, position) {
+	this.board = board;
 	this.position = position;
-	this.scale = Number(scale);
-};
+}
 
 Field.prototype.draw = function() {
-	this.context.fillRect(this.position.col * this.scale, this.position.row * this.scale, this.scale, this.scale);
+	this.board.ctx.fillRect(
+        this.position.col * this.board.fieldSize.width,
+        this.position.row * this.board.fieldSize.height,
+        this.board.fieldSize.width,
+        this.board.fieldSize.height
+    );
 };

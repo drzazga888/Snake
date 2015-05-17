@@ -1,17 +1,20 @@
-SnakeField = function(context, position, scale, snake, spriteType) {
-	Field.call(this, context, position, scale);
-	this.part = ++snake.bodyLength;
-	snake.head = position;
-	this.spriteType = spriteType;
-};
+function SnakeField(board, position, spriteType, part) {
+	Field.call(this, board, position);
+    this.spriteType = spriteType;
+	this.part = part;
+}
 
 SnakeField.prototype = Object.create(Field.prototype);
 SnakeField.prototype.constructor = SnakeField;
 
 SnakeField.prototype.draw = function() {
-	this.context.fillStyle = "#0f0";
+	this.board.ctx.fillStyle = "#0f0";
 	Field.prototype.draw.call(this);
-	this.context.font = "20px sans-serif";
-	this.context.fillStyle = "#000";
-	this.context.fillText(this.part, this.position.col * this.scale + 20, this.position.row * this.scale + 20);
+    this.board.ctx.font = "20px sans-serif";
+    this.board.ctx.fillStyle = "#000";
+    this.board.ctx.fillText(
+        this.part,
+        this.position.col * this.board.fieldSize.width + 20,
+        this.position.row * this.board.fieldSize.height + 20
+    );
 };

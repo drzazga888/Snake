@@ -1,11 +1,11 @@
-EmptyField = function(context, position, scale) {
-	Field.call(this, context, position, scale);
-};
+function EmptyField(board, position) {
+	Field.call(this, board, position);
+}
 
 EmptyField.prototype = Object.create(Field.prototype);
 EmptyField.prototype.constructor = EmptyField;
 
 EmptyField.prototype.draw = function() {
-	this.context.fillStyle = "#fff";
+	this.board.ctx.fillStyle = "#fff";
 	Field.prototype.draw.call(this);
 };

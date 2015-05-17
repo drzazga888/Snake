@@ -1,25 +1,20 @@
-Board = function(context, size, scale) {
-	this.context = context;
-	this.size = size;
-	this.scale = Number(scale);
+function Board(params) {
+	this.ctx = params.ctx;
+    this.size = params.size;
+	this.fieldSize = params.fieldSize;
 	this.fields = [];
-	for (var row_i = 0; row_i < this.size.row; row_i++) {
+	for (var row_i = 0; row_i < this.size.rows; ++row_i) {
 		this.fields[row_i] = [];
-		for (var col_i = 0; col_i < this.size.col; col_i++) {
-			this.setField(new Position(row_i, col_i), EmptyField);
-		}
+		for (var col_i = 0; col_i < this.size.cols; ++col_i)
+			this.setField({
+                row: row_i,
+                col: col_i
+            }, EmptyField);
 	}
-};
+}
 
-Board.prototype.registerSnake = function(snake) {
-	this.snake = snake;
-};
-
-Board.prototype.setField = function(position, fieldType, spriteType) {
-	if (fieldType === SnakeField)
-		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale, this.snake, spriteType);
-	else
-		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale);
+Board.prototype.setField = function(position, fieldType, spriteType, part) {
+    this.fields[position.row][position.col] = new fieldType(this, position, spriteType, part);
 };
 
 Board.prototype.getField = function(position) {
@@ -30,9 +25,12 @@ Board.prototype.getField = function(position) {
 };
 
 Board.prototype.foreach = function(callback) {
-	for (var row_i = 0; row_i < this.size.row; row_i++) {
-		for (var col_i = 0; col_i < this.size.col; col_i++)
-			callback(this.getField(new Position(row_i, col_i)), this);
+	for (var row_i = 0; row_i < this.size.rows; row_i++) {
+		for (var col_i = 0; col_i < this.size.cols; col_i++)
+            callback(this.getField({
+                col: col_i,
+                row: row_i
+            }), this);
 	}
 };
 
@@ -43,10 +41,10 @@ Board.prototype.draw = function() {
 };
 
 Board.prototype.putApple = function() {
-	var position = new Position();
+	var position = {};
 	do {
-		position.row = Math.floor(Math.random() * this.size.row);
-		position.col = Math.floor(Math.random() * this.size.col);
+		position.row = Math.floor(Math.random() * this.size.rows);
+		position.col = Math.floor(Math.random() * this.size.cols);
 	} while (!(this.getField(position) instanceof EmptyField));
 	this.setField(position, AppleField);
 };

@@ -1,19 +1,30 @@
-Snake = function(board)
-{
+function Snake(board) {
+    this.bodyLength = 0;
+    this.direction = "right";
 	this.board = board;
-	this.bodyLength = 0;
-	this.head = Position();
-	this.direction = "right";
-};
-
-Snake.prototype.put = function() {
-	this.board.setField(new Position(0, 0), SnakeField);
-	this.board.setField(new Position(0, 1), SnakeField);
-	this.board.setField(new Position(0, 2), SnakeField);
-};
+    this.board.setField({
+        col: 0,
+        row: 0
+    }, SnakeField, undefined, ++this.bodyLength);
+    this.board.setField({
+        col: 1,
+        row: 0
+    }, SnakeField, undefined, ++this.bodyLength);
+    this.board.setField({
+        col: 2,
+        row: 0
+    }, SnakeField, undefined, ++this.bodyLength);
+    this.head = {
+        col: 2,
+        row: 0
+    };
+}
 
 Snake.prototype.move = function() {
-	var newPosition = new Position(this.head.row, this.head.col);
+	var newPosition = {
+        col: this.head.col,
+        row: this.head.row
+    };
 	switch (this.direction) {
 		case "left":
 			--newPosition.col;
@@ -30,15 +41,15 @@ Snake.prototype.move = function() {
 	}
 	if (this.isGoodMove(newPosition)) {
 		var isApple = this.isApple(newPosition);
-		this.board.setField(newPosition, SnakeField);
+		this.board.setField(newPosition, SnakeField, undefined, ++this.bodyLength);
 		if (!isApple)
-			this.decrement();
+			this.crawl();
 		else
 			this.eat();
 		this.board.draw();
-	} else {
+        this.head = newPosition;
+	} else
 		console.warn("Ruch niedozwolony!");
-	}
 };
 
 Snake.prototype.changeDirection = function(direction) {
@@ -52,7 +63,7 @@ Snake.prototype.changeDirection = function(direction) {
 		!(this.direction == "up" && direction == "up") &&
 		!(this.direction == "down" && direction == "down")
 	)
-	this.direction = direction;
+	    this.direction = direction;
 };
 
 Snake.prototype.isGoodMove = function(position) {
@@ -69,10 +80,9 @@ Snake.prototype.eat = function() {
 	this.board.putApple();
 };
 
-Snake.prototype.decrement = function() {
+Snake.prototype.crawl = function() {
 	this.board.foreach(function(field, board) {
-		if (field instanceof SnakeField)
-		{
+		if (field instanceof SnakeField) {
 			--field.part;
 			if (field.part == 0)
 				board.setField(field.position, EmptyField);

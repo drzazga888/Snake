@@ -1,11 +1,11 @@
-AppleField = function(context, position, scale) {
-	Field.call(this, context, position, scale);
-};
+function AppleField(board, position) {
+	Field.call(this, board, position);
+}
 
 AppleField.prototype = Object.create(Field.prototype);
 AppleField.prototype.constructor = AppleField;
 
 AppleField.prototype.draw = function() {
-	this.context.fillStyle = "#f00";
+	this.board.ctx.fillStyle = "#f00";
 	Field.prototype.draw.call(this);
 };
