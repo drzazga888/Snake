@@ -15,15 +15,18 @@ Board.prototype.registerSnake = function(snake) {
 	this.snake = snake;
 };
 
-Board.prototype.setField = function(position, fieldType) {
+Board.prototype.setField = function(position, fieldType, spriteType) {
 	if (fieldType === SnakeField)
-		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale, this.snake);
+		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale, this.snake, spriteType);
 	else
 		this.fields[position.row][position.col] = new fieldType(this.context, position, this.scale);
 };
 
 Board.prototype.getField = function(position) {
-	return this.fields[position.row][position.col];
+	if (this.fields[position.row] !== undefined)
+		return this.fields[position.row][position.col];
+	else
+		return undefined;
 };
 
 Board.prototype.foreach = function(callback) {
@@ -34,7 +37,16 @@ Board.prototype.foreach = function(callback) {
 };
 
 Board.prototype.draw = function() {
-	this.foreach(function(field, board) {
+	this.foreach(function(field) {
 		field.draw();
 	});
+};
+
+Board.prototype.putApple = function() {
+	var position = new Position();
+	do {
+		position.row = Math.floor(Math.random() * this.size.row);
+		position.col = Math.floor(Math.random() * this.size.col);
+	} while (!(this.getField(position) instanceof EmptyField));
+	this.setField(position, AppleField);
 };

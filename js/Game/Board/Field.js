@@ -4,6 +4,6 @@ Field = function(context, position, scale) {
 	this.scale = new Number(scale);
 };
 
-Field.prototype.drawRect = function() {
+Field.prototype.draw = function() {
 	this.context.fillRect(this.position.col * this.scale, this.position.row * this.scale, this.scale, this.scale);
 };

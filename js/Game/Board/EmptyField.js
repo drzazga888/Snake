@@ -7,5 +7,5 @@ EmptyField.prototype.constructor = EmptyField;
 
 EmptyField.prototype.draw = function() {
 	this.context.fillStyle = "#fff";
-	this.drawRect();
+	Field.prototype.draw.call(this);
 };

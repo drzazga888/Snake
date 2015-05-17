@@ -16,7 +16,6 @@
 	<script src="js/Game/Board/SnakeField.js"></script>
 	<script src="js/Game/Board/Board.js"></script>
 	<script src="js/Game/Snake.js"></script>
-	<script src="js/Game/Apple.js"></script>
 	<script src="js/Game/Game.js"></script>
 	<script src="js/scripts.js"></script>
 </head>
@@ -48,19 +47,56 @@
 	</nav>
 
 	<section>
+		<h3>Test położenia i skalowania</h3>
+		<canvas id="snake-head" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="snake-body" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="snake-body-corner" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="snake-tail" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="apple" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+	</section>
+
+	<section>
+		<h3>Test spritów</h3>
+		<canvas id="snake-head" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="snake-body" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="snake-body-corner" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="snake-tail" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+		<canvas id="apple" width="100" height="100">
+			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+		</canvas>
+	</section>
+
+	<section>
 		<h3>Sprawdzanie, jak działa javascript</h3>
 		<p>Wszystkie rezultaty widoczne w konsoli przeglądarki</p>
-		<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
 		<canvas id="game-canvas" width="600" height="400">
 			<p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
 		</canvas>
 		<div class="button-row center">
-			<button onclick="game.snake.move('up');">Góra</button>
+			<button onclick="game.snake.changeDirection('up');">Góra</button>
 		</div>
 		<div class="button-row center">
-			<button onclick="game.snake.move('left');">Lewo</button>
-			<button onclick="game.snake.move('down');">Dół</button>
-			<button onclick="game.snake.move('right');">Prawo</button>
+			<button onclick="game.snake.changeDirection('left');">Lewo</button>
+			<button onclick="game.snake.changeDirection('down');">Dół</button>
+			<button onclick="game.snake.changeDirection('right');">Prawo</button>
 		</div>
 	</section>
 

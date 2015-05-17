@@ -7,5 +7,5 @@ AppleField.prototype.constructor = AppleField;
 
 AppleField.prototype.draw = function() {
 	this.context.fillStyle = "#f00";
-	this.drawRect();
+	Field.prototype.draw.call(this);
 };

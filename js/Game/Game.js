@@ -17,7 +17,7 @@ Game = function(canvasID, size) {
 	this.board.registerSnake(this.snake);
 	this.snake.put();
 	// kładzie jabłko na planszy
-	this.apple = new Apple(this.board);
+	this.board.putApple();
 	// pierwsze malowanie planszy
 	this.board.draw();
 };
