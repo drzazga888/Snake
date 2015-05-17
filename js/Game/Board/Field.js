@@ -1,7 +1,7 @@
 Field = function(context, position, scale) {
 	this.context = context;
 	this.position = position;
-	this.scale = new Number(scale);
+	this.scale = Number(scale);
 };
 
 Field.prototype.draw = function() {

@@ -34,7 +34,7 @@ window.addEventListener("keydown", function(event) {
 });
 
 function drawSnakeHead() {
-	ctx = $("#snake-head")[0].getContext('2d');
+	var ctx = $("#snake-head")[0].getContext('2d');
 	// ogólne style do ciała
 	ctx.fillStyle = "#FFB357";
 	ctx.strokeStyle = "#FFB357";
@@ -73,7 +73,7 @@ function drawSnakeHead() {
 }
 
 function drawSnakeBody() {
-	ctx = $("#snake-body")[0].getContext('2d');
+	var ctx = $("#snake-body")[0].getContext('2d');
 	// ogólne style do ciała
 	ctx.fillStyle = "#FFB357";
 	// malowanie prostokąta
@@ -97,7 +97,7 @@ function drawSnakeBody() {
 }
 
 function drawSnakeBodyCorner() {
-	ctx = $("#snake-body-corner")[0].getContext('2d');
+	var ctx = $("#snake-body-corner")[0].getContext('2d');
 	// ogólne style do ciała
 	ctx.fillStyle = "#FFB357";
 	// tworzenie maski przycinającej - zapamiętanie stanu
@@ -137,7 +137,7 @@ function drawSnakeBodyCorner() {
 }
 
 function drawSnakeTail() {
-	ctx = $("#snake-tail")[0].getContext('2d');
+	var ctx = $("#snake-tail")[0].getContext('2d');
 	// ogólne style do ciała
 	ctx.fillStyle = "#FFB357";
 	// przycinanie
@@ -174,7 +174,7 @@ function drawSnakeTail() {
 }
 
 function drawApple() {
-	ctx = $("#apple")[0].getContext('2d');
+	var ctx = $("#apple")[0].getContext('2d');
 	// główna część jabłka
 	ctx.fillStyle = "red";
 	ctx.beginPath();

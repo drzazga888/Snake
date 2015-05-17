@@ -4,7 +4,7 @@ Snake = function(board)
 	this.bodyLength = 0;
 	this.head = Position();
 	this.direction = "right";
-}
+};
 
 Snake.prototype.put = function() {
 	this.board.setField(new Position(0, 0), SnakeField);
@@ -58,10 +58,7 @@ Snake.prototype.changeDirection = function(direction) {
 Snake.prototype.isGoodMove = function(position) {
 	if (this.board.getField(position) === undefined)
 		return false;
-	else if (this.board.getField(position) instanceof SnakeField)
-		return false;
-	else
-		return true;
+	return !(this.board.getField(position) instanceof SnakeField);
 };
 
 Snake.prototype.isApple = function(position) {
