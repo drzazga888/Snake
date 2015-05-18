@@ -1,7 +1,6 @@
 function Board(params) {
 	this.ctx = params.ctx;
     this.size = params.size;
-	this.fieldSize = params.fieldSize;
 	this.fields = [];
 	for (var row_i = 0; row_i < this.size.rows; ++row_i) {
 		this.fields[row_i] = [];
@@ -13,8 +12,8 @@ function Board(params) {
 	}
 }
 
-Board.prototype.setField = function(position, fieldType, spriteType, part) {
-    this.fields[position.row][position.col] = new fieldType(this, position, spriteType, part);
+Board.prototype.setField = function(position, fieldType, spriteType, orientation, part) {
+    this.fields[position.row][position.col] = new fieldType(this, position, spriteType, orientation, part);
 };
 
 Board.prototype.getField = function(position) {
@@ -24,18 +23,18 @@ Board.prototype.getField = function(position) {
 		return undefined;
 };
 
-Board.prototype.foreach = function(callback) {
+Board.prototype.foreach = function(context, callback) {
 	for (var row_i = 0; row_i < this.size.rows; row_i++) {
 		for (var col_i = 0; col_i < this.size.cols; col_i++)
-            callback(this.getField({
+            callback.call(context, this.getField({
                 col: col_i,
                 row: row_i
-            }), this);
+            }));
 	}
 };
 
 Board.prototype.draw = function() {
-	this.foreach(function(field) {
+	this.foreach(this, function(field) {
 		field.draw();
 	});
 };
