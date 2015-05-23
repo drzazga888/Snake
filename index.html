@@ -21,6 +21,10 @@
 <body>
 
 <header>
+    <video autoplay loop id="snake-video">
+        <source src="video/snake.mp4" type="video/mp4">
+        <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;video&gt;</code></em></p>
+    </video>
     <svg width="300" height="80" id="logo">
         <ellipse cx="120" cy="40" rx="70" ry="40" class="body"></ellipse>
         <polygon points="140,10 260,10 200,70 140,70" class="body"></polygon>
@@ -46,18 +50,24 @@
 </nav>
 
 <section>
+    <h3>Nowe sprite'y</h3>
+    <canvas id="rotten-apple" width="100" height="100">not supported</canvas>
+    <canvas id="obstacle" width="100" height="100">not supported</canvas>
+</section>
+
+<section>
     <h3>Sprawdzanie, jak działa javascript</h3>
     <p>Wszystkie rezultaty widoczne w konsoli przeglądarki</p>
     <canvas id="game-canvas">
         <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
     </canvas>
     <div class="button-row center">
-        <button onclick="game.snake.changeDirection('up');">Góra</button>
+        <button onclick="game.snake.setDirection('up');">Góra</button>
     </div>
     <div class="button-row center">
-        <button onclick="game.snake.changeDirection('left');">Lewo</button>
-        <button onclick="game.snake.changeDirection('down');">Dół</button>
-        <button onclick="game.snake.changeDirection('right');">Prawo</button>
+        <button onclick="game.snake.setDirection('left');">Lewo</button>
+        <button onclick="game.snake.setDirection('down');">Dół</button>
+        <button onclick="game.snake.setDirection('right');">Prawo</button>
     </div>
 </section>
 

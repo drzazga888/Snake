@@ -141,8 +141,9 @@ body > * {
 }
 
 body > header {
-	background-image: radial-gradient(farthest-corner at 50% 100%, #5D3A3A 0%, #392F38 100%);
+	background-color: rgba(57, 47, 56, 0.85);
 	text-align: center;
+    position: relative;
 }
 
 body > nav {
@@ -166,4 +167,12 @@ body > section:last-of-type {
 	border-width: 10px;
     border-radius: 5px;
 	background: #392F38;
+}
+
+#snake-video {
+    position: absolute;
+    bottom: -35%;
+    left: -5%;
+    width: 110%;
+    z-index: -1000;
 }
