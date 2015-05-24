@@ -48,10 +48,8 @@ Board.prototype.putApple = function() {
 	this.setField(position, HealthyAppleField);
 };
 
-// for debug only
-
-Board.prototype.toNumberArray = function() {
-    var parsed = JSON.stringify(this.fields, function(key, value) {
+Board.prototype.stringify = function() {
+    return JSON.stringify(this.fields, function(key, value) {
         if (value instanceof Array)
             return value;
         else if (value instanceof Field)
@@ -59,8 +57,8 @@ Board.prototype.toNumberArray = function() {
         else
             return undefined;
     });
-    JSON.parse(parsed, function(key, value) {
-        console.log(key, value);
-        return value;
-    });
+};
+
+Board.prototype.parse = function(stringifiedBoard) {
+
 };

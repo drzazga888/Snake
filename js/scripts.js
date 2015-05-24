@@ -4,25 +4,30 @@ String.prototype.endsWith = function(suffix) {
 
 var game;
 
-$(document).ready(function(){
-    $(window).resize(function(){
+$(document).ready(function() {
+
+    $(window).resize(function() {
         var maxWidth = $(this).width();
         var maxHeight = $(this).height();
-        $("#game-canvas").css({
+        $("#game-canvas").css( {
             maxWidth: Math.floor(maxWidth * 0.9) + "px",
             maxHeight: Math.floor(maxHeight * 0.9) + "px"
         });
     }).resize();
-    game = new Game({
+
+    game = new Game( {
         canvasID: "game-canvas",
         size: {
             cols: 12,
             rows: 8
         }
     });
+
 	window.setInterval(function() {
 		game.snake.move();
-	}, 200);
+        game.worker.postMessage(game.board.stringify());
+	}, 250);
+
     window.addEventListener("keydown", function(event) {
         switch (event.keyCode) {
             case 65:
@@ -39,4 +44,9 @@ $(document).ready(function(){
                 break;
         }
     });
+
+    game.worker.onmessage = function(event) {
+        console.log(event.data);
+    };
+
 });

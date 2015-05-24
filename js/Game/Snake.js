@@ -99,7 +99,7 @@ Snake.prototype.isGoodMove = function(position) {
 };
 
 Snake.prototype.isApple = function(position) {
-	return this.board.getField(position) instanceof AppleField;
+	return this.board.getField(position) instanceof HealthyAppleField;
 };
 
 Snake.prototype.eat = function() {
