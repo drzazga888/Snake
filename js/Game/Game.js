@@ -8,5 +8,6 @@ function Game(params) {
     });
 	this.snake = new Snake(this.board);
 	this.board.putApple();
+    //this.board.toNumberArray();
 	this.board.draw();
 }

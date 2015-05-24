@@ -1,5 +1,5 @@
-function SnakeField(board, position, spriteType, orientation, part) {
-	Field.call(this, board, position);
+function SnakeField(ctx, position, spriteType, orientation, part) {
+	Field.call(this, ctx, position, 1);
     this.spriteType = spriteType;
     this.orientation = orientation;
 	this.part = part;
@@ -49,138 +49,138 @@ SnakeField.prototype.draw = function() {
 
 SnakeField.prototype.drawHead = function() {
     // ogólne style do ciała
-    this.board.ctx.fillStyle = "#FFB357";
-    this.board.ctx.strokeStyle = "#FFB357";
-    this.board.ctx.lineWidth = 3;
+    this.ctx.fillStyle = "#FFB357";
+    this.ctx.strokeStyle = "#FFB357";
+    this.ctx.lineWidth = 3;
     // malowanie prostokąta
-    this.board.ctx.fillRect(50, 25, 50, 50);
+    this.ctx.fillRect(50, 25, 50, 50);
     // malowanie owalu
-    this.board.ctx.save();
-    this.board.ctx.rect(0, 0, 100, 100);
-    this.board.ctx.clip();
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(115, 50);
-    this.board.ctx.bezierCurveTo(115, 10, 20, 10, 20, 50);
-    this.board.ctx.bezierCurveTo(20, 90, 115, 90, 115, 50);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
-    this.board.ctx.restore();
+    this.ctx.save();
+    this.ctx.rect(0, 0, 100, 100);
+    this.ctx.clip();
+    this.ctx.beginPath();
+    this.ctx.moveTo(115, 50);
+    this.ctx.bezierCurveTo(115, 10, 20, 10, 20, 50);
+    this.ctx.bezierCurveTo(20, 90, 115, 90, 115, 50);
+    this.ctx.closePath();
+    this.ctx.fill();
+    this.ctx.restore();
     // język
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(22, 50);
-    this.board.ctx.quadraticCurveTo(17, 60, 12, 50);
-    this.board.ctx.quadraticCurveTo(7, 40, 2, 50);
-    this.board.ctx.stroke();
+    this.ctx.beginPath();
+    this.ctx.moveTo(22, 50);
+    this.ctx.quadraticCurveTo(17, 60, 12, 50);
+    this.ctx.quadraticCurveTo(7, 40, 2, 50);
+    this.ctx.stroke();
     // oczy - czarne wypełnienie
-    this.board.ctx.fillStyle = "#000";
-    this.board.ctx.beginPath();
-    this.board.ctx.arc(45, 40, 5, 0, Math.PI * 2, false);
-    this.board.ctx.arc(45, 60, 5, 0, Math.PI * 2, false);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.fillStyle = "#000";
+    this.ctx.beginPath();
+    this.ctx.arc(45, 40, 5, 0, Math.PI * 2, false);
+    this.ctx.arc(45, 60, 5, 0, Math.PI * 2, false);
+    this.ctx.closePath();
+    this.ctx.fill();
     // oczy - błysk
-    this.board.ctx.fillStyle = "#fff";
-    this.board.ctx.beginPath();
-    this.board.ctx.arc(47, 38, 1, 0, Math.PI * 2, false);
-    this.board.ctx.arc(47, 58, 1, 0, Math.PI * 2, false);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.fillStyle = "#fff";
+    this.ctx.beginPath();
+    this.ctx.arc(47, 38, 1, 0, Math.PI * 2, false);
+    this.ctx.arc(47, 58, 1, 0, Math.PI * 2, false);
+    this.ctx.closePath();
+    this.ctx.fill();
 };
 
 SnakeField.prototype.drawBody = function() {
     // ogólne style do ciała
-    this.board.ctx.fillStyle = "#FFB357";
+    this.ctx.fillStyle = "#FFB357";
     // malowanie prostokąta
-    this.board.ctx.fillRect(0, 25, 100, 50);
+    this.ctx.fillRect(0, 25, 100, 50);
     // wzorek na wężu - styl wypełnienia
-    this.board.ctx.fillStyle = "#c87";
+    this.ctx.fillStyle = "#c87";
     // pierwszy pręg
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(15, 25);
-    this.board.ctx.lineTo(25, 50);
-    this.board.ctx.lineTo(35, 25);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(15, 25);
+    this.ctx.lineTo(25, 50);
+    this.ctx.lineTo(35, 25);
+    this.ctx.closePath();
+    this.ctx.fill();
     // drugi pręg
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(65, 75);
-    this.board.ctx.lineTo(75, 50);
-    this.board.ctx.lineTo(85, 75);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(65, 75);
+    this.ctx.lineTo(75, 50);
+    this.ctx.lineTo(85, 75);
+    this.ctx.closePath();
+    this.ctx.fill();
 };
 
 SnakeField.prototype.drawBodyCorner = function() {
     // ogólne style do ciała
-    this.board.ctx.fillStyle = "#FFB357";
+    this.ctx.fillStyle = "#FFB357";
     // tworzenie maski przycinającej - zapamiętanie stanu
-    this.board.ctx.save();
+    this.ctx.save();
     // malowanie skręcającego ciałą węża (maska)
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(0, 25);
-    this.board.ctx.lineTo(25, 25);
-    this.board.ctx.arcTo(75, 25, 75, 75, 50);
-    this.board.ctx.lineTo(75, 100);
-    this.board.ctx.lineTo(25, 100);
-    this.board.ctx.lineTo(25, 90);
-    this.board.ctx.arcTo(25, 75, 10, 75, 15);
-    this.board.ctx.lineTo(0, 75);
-    this.board.ctx.closePath();
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 25);
+    this.ctx.lineTo(25, 25);
+    this.ctx.arcTo(75, 25, 75, 75, 50);
+    this.ctx.lineTo(75, 100);
+    this.ctx.lineTo(25, 100);
+    this.ctx.lineTo(25, 90);
+    this.ctx.arcTo(25, 75, 10, 75, 15);
+    this.ctx.lineTo(0, 75);
+    this.ctx.closePath();
     // maska + wypełnienie ciała
-    this.board.ctx.clip();
-    this.board.ctx.fill();
+    this.ctx.clip();
+    this.ctx.fill();
     // ust. wypełnienie pręgów
-    this.board.ctx.fillStyle = "#c87";
+    this.ctx.fillStyle = "#c87";
     // pręg nr 1
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(17, 10);
-    this.board.ctx.lineTo(20, 50);
-    this.board.ctx.lineTo(45, 20);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(17, 10);
+    this.ctx.lineTo(20, 50);
+    this.ctx.lineTo(45, 20);
+    this.ctx.closePath();
+    this.ctx.fill();
     // pręg nr 2
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(5, 75);
-    this.board.ctx.lineTo(50, 75);
-    this.board.ctx.lineTo(25, 95);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(5, 75);
+    this.ctx.lineTo(50, 75);
+    this.ctx.lineTo(25, 95);
+    this.ctx.closePath();
+    this.ctx.fill();
     // wypełnienie
-    this.board.ctx.restore();
+    this.ctx.restore();
 };
 
 SnakeField.prototype.drawTail = function() {
     // ogólne style do ciała
-    this.board.ctx.fillStyle = "#FFB357";
+    this.ctx.fillStyle = "#FFB357";
     // przycinanie
-    this.board.ctx.save();
+    this.ctx.save();
     // rysowanie ogona
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(0, 25);
-    this.board.ctx.lineTo(25, 25);
-    this.board.ctx.bezierCurveTo(50, 25, 85, 50, 100, 50);
-    this.board.ctx.bezierCurveTo(85, 50, 50, 75, 25, 75);
-    this.board.ctx.lineTo(0, 75);
-    this.board.ctx.closePath();
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 25);
+    this.ctx.lineTo(25, 25);
+    this.ctx.bezierCurveTo(50, 25, 85, 50, 100, 50);
+    this.ctx.bezierCurveTo(85, 50, 50, 75, 25, 75);
+    this.ctx.lineTo(0, 75);
+    this.ctx.closePath();
     // przycinanie
-    this.board.ctx.clip();
-    this.board.ctx.fill();
+    this.ctx.clip();
+    this.ctx.fill();
     // ust. wypełnienie pręgów
-    this.board.ctx.fillStyle = "#c87";
+    this.ctx.fillStyle = "#c87";
     // pierwszy pręg
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(15, 25);
-    this.board.ctx.lineTo(25, 50);
-    this.board.ctx.lineTo(35, 25);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(15, 25);
+    this.ctx.lineTo(25, 50);
+    this.ctx.lineTo(35, 25);
+    this.ctx.closePath();
+    this.ctx.fill();
     // drugi pręg
-    this.board.ctx.beginPath();
-    this.board.ctx.moveTo(45, 75);
-    this.board.ctx.lineTo(55, 50);
-    this.board.ctx.lineTo(65, 75);
-    this.board.ctx.closePath();
-    this.board.ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(45, 75);
+    this.ctx.lineTo(55, 50);
+    this.ctx.lineTo(65, 75);
+    this.ctx.closePath();
+    this.ctx.fill();
     // przywracanie
-    this.board.ctx.restore();
+    this.ctx.restore();
 };

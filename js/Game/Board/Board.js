@@ -13,7 +13,7 @@ function Board(params) {
 }
 
 Board.prototype.setField = function(position, fieldType, spriteType, orientation, part) {
-    this.fields[position.row][position.col] = new fieldType(this, position, spriteType, orientation, part);
+    this.fields[position.row][position.col] = new fieldType(this.ctx, position, spriteType, orientation, part);
 };
 
 Board.prototype.getField = function(position) {
@@ -45,5 +45,22 @@ Board.prototype.putApple = function() {
 		position.row = Math.floor(Math.random() * this.size.rows);
 		position.col = Math.floor(Math.random() * this.size.cols);
 	} while (!(this.getField(position) instanceof EmptyField));
-	this.setField(position, AppleField);
+	this.setField(position, PoisonedAppleField);
+};
+
+// for debug only
+
+Board.prototype.toNumberArray = function() {
+    var parsed = JSON.stringify(this.fields, function(key, value) {
+        if (value instanceof Array)
+            return value;
+        else if (value instanceof Field)
+            return value.id;
+        else
+            return undefined;
+    });
+    JSON.parse(parsed, function(key, value) {
+        console.log(key, value);
+        return value;
+    });
 };

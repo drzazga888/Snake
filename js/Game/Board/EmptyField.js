@@ -1,5 +1,5 @@
-function EmptyField(board, position) {
-	Field.call(this, board, position);
+function EmptyField(ctx, position) {
+	Field.call(this, ctx, position, 0);
 }
 
 EmptyField.prototype = Object.create(Field.prototype);
