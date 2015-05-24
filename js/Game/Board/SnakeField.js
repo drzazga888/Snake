@@ -1,5 +1,5 @@
-function SnakeField(ctx, position, spriteType, orientation, part) {
-	Field.call(this, ctx, position, 1);
+function SnakeField(ctx, position, orientation, spriteType, part) {
+	Field.call(this, ctx, position, spriteType == "head" ? 2 : 1);
     this.spriteType = spriteType;
     this.orientation = orientation;
 	this.part = part;

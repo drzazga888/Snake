@@ -9,15 +9,15 @@ function Snake(board) {
     this.board.setField({
         col: 0,
         row: 0
-    }, SnakeField, "tail", "right", ++this.bodyLength);
+    }, SnakeField, "right", "tail", ++this.bodyLength);
     this.board.setField({
         col: 1,
         row: 0
-    }, SnakeField, "body", "right", ++this.bodyLength);
+    }, SnakeField, "right", "body", ++this.bodyLength);
     this.board.setField({
         col: 2,
         row: 0
-    }, SnakeField, "head", "right", ++this.bodyLength);
+    }, SnakeField, "right", "head", ++this.bodyLength);
     this.head = [
         {
             col: 1,
@@ -30,6 +30,7 @@ function Snake(board) {
 }
 
 Snake.prototype.move = function() {
+    this.board.getField(this.head[1]).id = 1;
     this.refreshDirection();
 	var newPosition = {
         col: this.head[1].col,
@@ -51,7 +52,7 @@ Snake.prototype.move = function() {
 	}
 	if (this.isGoodMove(newPosition)) {
 		var isApple = this.isApple(newPosition);
-		this.board.setField(newPosition, SnakeField, "head", this.directions[1], ++this.bodyLength);
+		this.board.setField(newPosition, SnakeField, this.directions[1], "head", ++this.bodyLength);
         this.makeCorner();
 		if (!isApple)
 			this.crawl();

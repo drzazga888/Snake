@@ -8,6 +8,24 @@ function Game(params) {
     });
 	this.snake = new Snake(this.board);
 	this.board.putApple();
-    //this.board.toNumberArray();
+    // debug only
+    // this.board.toNumberArray();
+    this.board.setField({
+        col: 8,
+        row: 6
+    }, ObstacleField);
+    this.board.setField({
+        col: 8,
+        row: 7
+    }, ObstacleField);
+    this.board.setField({
+        col: 4,
+        row: 4
+    }, PoisonedAppleField);
+    this.board.setField({
+        col: 2,
+        row: 5
+    }, MouseField, "up");
+    // end debug
 	this.board.draw();
 }

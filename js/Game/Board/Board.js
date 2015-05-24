@@ -12,8 +12,8 @@ function Board(params) {
 	}
 }
 
-Board.prototype.setField = function(position, fieldType, spriteType, orientation, part) {
-    this.fields[position.row][position.col] = new fieldType(this.ctx, position, spriteType, orientation, part);
+Board.prototype.setField = function(position, fieldType, orientation, spriteType, part) {
+    this.fields[position.row][position.col] = new fieldType(this.ctx, position, orientation, spriteType, part);
 };
 
 Board.prototype.getField = function(position) {
@@ -45,7 +45,7 @@ Board.prototype.putApple = function() {
 		position.row = Math.floor(Math.random() * this.size.rows);
 		position.col = Math.floor(Math.random() * this.size.cols);
 	} while (!(this.getField(position) instanceof EmptyField));
-	this.setField(position, PoisonedAppleField);
+	this.setField(position, HealthyAppleField);
 };
 
 // for debug only

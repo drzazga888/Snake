@@ -1,5 +1,5 @@
 function PoisonedAppleField(ctx, position) {
-    AppleField.call(this, ctx, position, "#624C20", "#980");
+    AppleField.call(this, ctx, position, 4, "#624C20", "#980");
 }
 
 PoisonedAppleField.prototype = Object.create(AppleField.prototype);

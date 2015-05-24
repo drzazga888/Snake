@@ -1,5 +1,5 @@
-function AppleField(ctx, position, peelColor, leafColor) {
-	Field.call(this, ctx, position, 2);
+function AppleField(ctx, position, id, peelColor, leafColor) {
+	Field.call(this, ctx, position, id);
     this.peelColor = peelColor;
     this.leafColor = leafColor;
 }
