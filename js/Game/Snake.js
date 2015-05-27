@@ -104,7 +104,6 @@ Snake.prototype.isApple = function(position) {
 
 Snake.prototype.eat = function() {
     this.board.getField(this.head[1]).spriteType = "body";
-	this.board.putApple();
 };
 
 Snake.prototype.crawl = function() {

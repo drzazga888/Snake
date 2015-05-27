@@ -4,28 +4,26 @@ function Game(params) {
     canvas.height = params.size.rows * 100;
     this.board = new Board( {
         ctx: canvas.getContext('2d'),
-        size: params.size
+        size: params.size,
+        healthyApples: params.healthyApples,
+        maxPoisonedApples: params.maxPoisonedApples,
+        obstacles: params.obstacles
     });
+    this.interval = params.interval;
 	this.snake = new Snake(this.board);
+    this.board.putObstacles();
     this.worker = new Worker("js/Game/Worker.js");
-	this.board.putApple();
     // debug only
-    this.board.setField( {
-        col: 8,
-        row: 6
-    }, ObstacleField);
-    this.board.setField( {
-        col: 8,
-        row: 7
-    }, ObstacleField);
-    this.board.setField( {
-        col: 4,
-        row: 4
-    }, PoisonedAppleField);
     this.board.setField( {
         col: 2,
         row: 5
     }, MouseField, "up");
     // end debug
-	this.board.draw();
+    // this.calculate();
 }
+
+Game.prototype.calculate = function() {
+    this.board.draw();
+    this.snake.move();
+    this.worker.postMessage(this.board.stringify());
+};

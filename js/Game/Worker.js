@@ -1,11 +1,22 @@
 importScripts(
     "LightBoard.js",
-    "Obstables.js"
+    "Randomizer.js",
+    "ObjectGenerator.js"
 );
 
-var board = new LightBoard();
+var lightBoard = new LightBoard();
+var isBoardUsed = false;
 
 this.onmessage = function(event) {
-    board.refresh(event.data);
-    this.postMessage(JSON.stringify(board.stats));
+    this.postMessage("[DEBUG] od poczatku");
+    if (!isBoardUsed) {
+        isBoardUsed = true;
+        lightBoard.refresh(event.data);
+        HealthyApplesGenerator(lightBoard, 2);
+        PoisonedApplesGenerator(lightBoard, 3);
+        this.postMessage(JSON.stringify(lightBoard.board));
+        isBoardUsed = false;
+    } else {
+        this.postMessage("[DEBUG] WebWorker potrzebuje jescze czasu...");
+    }
 };

@@ -1,6 +1,14 @@
-String.prototype.endsWith = function(suffix) {
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-};
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function (str){
+        return this.slice(0, str.length) == str;
+    };
+}
+
+if (typeof String.prototype.endsWith != 'function') {
+    String.prototype.endsWith = function (str){
+        return this.slice(-str.length) == str;
+    };
+}
 
 var game;
 
@@ -18,15 +26,18 @@ $(document).ready(function() {
     game = new Game( {
         canvasID: "game-canvas",
         size: {
-            cols: 12,
-            rows: 8
-        }
+            cols: 16,
+            rows: 10
+        },
+        healthyApples: 2,
+        maxPoisonedApples: 3,
+        obstacles: 6,
+        interval: 280
     });
 
 	window.setInterval(function() {
-		game.snake.move();
-        game.worker.postMessage(game.board.stringify());
-	}, 250);
+        game.calculate()
+    }, game.interval);
 
     window.addEventListener("keydown", function(event) {
         switch (event.keyCode) {
@@ -46,7 +57,10 @@ $(document).ready(function() {
     });
 
     game.worker.onmessage = function(event) {
-        console.log(event.data);
+        if (event.data.startsWith("[DEBUG]"))
+            console.log(event.data);
+        else
+            game.board.parse(event.data);
     };
 
 });

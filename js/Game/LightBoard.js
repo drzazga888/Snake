@@ -1,6 +1,4 @@
 function LightBoard() {
-    this.board = [];
-    this.initStats();
 }
 
 LightBoard.mouseIdToOrientation = function(id) {
@@ -18,9 +16,8 @@ LightBoard.mouseIdToOrientation = function(id) {
 
 LightBoard.prototype.initStats = function() {
     this.stats = {
-        healthyApples: [],
-        poisonedApples: [],
-        obstacles: [],
+        healthyApples: 0,
+        poisonedApples: 0,
         mice: []
     };
 };
@@ -41,19 +38,10 @@ LightBoard.prototype.generateStats = function() {
                 };
                 switch (this.board[row_i][col_i]) {
                     case 3:
-                        this.stats.healthyApples.push({
-                            position: position
-                        });
+                        ++this.stats.healthyApples;
                         break;
                     case 4:
-                        this.stats.poisonedApples.push({
-                            position: position
-                        });
-                        break;
-                    case 5:
-                        this.stats.obstacles.push({
-                            position: position
-                        });
+                        ++this.stats.poisonedApples;
                         break;
                     case 6:
                     case 7:
