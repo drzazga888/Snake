@@ -41,6 +41,11 @@ h3 {
 	text-transform: uppercase;
 }
 
+h4 {
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
 em {
 	font-style: normal;
 }
@@ -90,6 +95,13 @@ canvas {
 	box-sizing: border-box;
 }
 
+kbd {
+    background: #392F38;
+    border-bottom: solid 2px #5D3A3A;
+    border-radius: 2px;
+    padding: 0.1em 0.4em;
+}
+
 /* klasy */
 
 .button-row {
@@ -98,6 +110,14 @@ canvas {
 
 .button-row.center {
 	text-align: center;
+}
+
+.block-labeled label {
+    display: block;
+    margin: 10px;
+    width: 800px;
+    max-width: 100%;
+    text-align: right;
 }
 
 .menu {
@@ -166,7 +186,10 @@ body > section:last-of-type {
 #game-canvas {
 	border-width: 10px;
     border-radius: 5px;
-	background: #392F38;
+	background-color: #392F38;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 #snake-video {
@@ -175,4 +198,9 @@ body > section:last-of-type {
     left: -5%;
     width: 110%;
     z-index: -1000;
+}
+
+#game-canvas,
+#game-controls {
+    display: none;
 }

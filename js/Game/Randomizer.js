@@ -26,18 +26,16 @@ Randomizer.getValidField = function(board, validator) {
         col: Math.floor(Math.random() * board[0].length),
         row: Math.floor(Math.random() * board.length)
     };
-    while (validator(board[position.row][position.col]) == false) {
+    if (validator(board[position.row][position.col]) == false) {
         var offset = Randomizer.generateCoprime(board.length * board[0].length);
-        var rowOffset = (offset + position.row) % board[0].length;
-        var colOffset = (offset + position.col) - (rowOffset * board[0].length);
-        rowOffset %= board.length;
-        position.col = colOffset;
-        position.row = rowOffset;
+        var iterator = 0;
+        while (validator(board[position.row][position.col]) == false) {
+            if (++iterator >= board.length * board[0].length)
+                throw "All board items are invalid!";
+            var overflows = Math.floor((position.col + offset) / board[0].length);
+            position.col = (position.col + offset) - (overflows * board[0].length);
+            position.row = (position.row + overflows) % board.length;
+        }
     }
-    if (position.col < 0 || position.row < 0 || position.col > board[0].length || position.row > board.length)
-        if (typeof this.postMessage == "function")
-            this.postMessage("[DEBUG] masz problem nr 2");
-        else
-            console.log("[DEBUG] masz problem nr 2");
     return position;
 };

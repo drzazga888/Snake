@@ -61,8 +61,11 @@ Snake.prototype.move = function() {
 		this.board.draw();
         this.head.shift();
         this.head[1] = newPosition;
-	} else
-		console.warn("Ruch niedozwolony!");
+	} else if (this.bodyLength == this.board.size.cols * this.board.size.rows)
+        return "win";
+    else
+        return "loss";
+    return null;
 };
 
 Snake.prototype.setDirection = function(direction) {

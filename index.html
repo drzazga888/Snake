@@ -41,50 +41,57 @@
 </nav>
 
 <section>
-    <h3>Sprawdzanie, jak działa javascript</h3>
-    <p>Wszystkie rezultaty widoczne w konsoli przeglądarki</p>
+    <h3>Gra</h3>
     <canvas id="game-canvas">
         <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
     </canvas>
-    <div class="button-row center">
-        <button onclick="game.snake.setDirection('up');">Góra</button>
-    </div>
-    <div class="button-row center">
-        <button onclick="game.snake.setDirection('left');">Lewo</button>
-        <button onclick="game.snake.setDirection('down');">Dół</button>
-        <button onclick="game.snake.setDirection('right');">Prawo</button>
-    </div>
-</section>
-
-<section>
-    <h3>Tytuł sekcji</h3>
-    <p>Etiam vel justo sed nisl semper pulvinar vitae vel risus. Nam eget vulputate ante, et placerat ex. Nullam
-        tristique metus nisi, eget pretium neque dignissim ac. Mauris convallis eros ut purus venenatis malesuada. Donec
-        vestibulum leo leo, a elementum lectus pulvinar et. Phasellus finibus ante vulputate orci commodo malesuada.
-        Nullam sagittis scelerisque ligula, eget gravida nibh rutrum quis. Vestibulum sed erat urna. Cras a blandit
-        metus.</p>
-    <p>Aenean sed eleifend purus, sed mattis ligula. Nulla cursus metus libero, vitae euismod lectus commodo ut. Aliquam
-        tristique vehicula metus nec pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-        inceptos himenaeos. In hac habitasse platea dictumst. Fusce convallis nec leo a blandit. Pellentesque habitant
-        morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tempor posuere mauris, eget
-        accumsan risus porttitor sit amet. Donec efficitur id velit a consectetur. Praesent eget enim mattis, placerat
-        mi ut, vehicula felis. Nunc eget nisl felis. Quisque fermentum, metus ut porttitor luctus, justo arcu malesuada
-        metus, sed fringilla orci purus ac odio. Sed eu suscipit velit, ornare porttitor neque. Quisque ut ex ligula. In
-        sollicitudin lobortis nunc, quis consequat augue sodales ut. Integer cursus lacus non libero fringilla, luctus
-        condimentum magna venenatis.</p>
-    <p>Aenean quis nulla vel leo convallis semper. In luctus posuere ligula, in vestibulum neque feugiat dignissim. Cras
-        tristique ante a ultricies facilisis. Donec blandit finibus dui. Sed tristique tortor ac enim imperdiet laoreet.
-        Donec dignissim nisi id quam molestie fringilla non ut tellus. Nunc nisl nunc, maximus ut justo in, tempor
-        tincidunt massa. Donec quis libero vitae neque consequat iaculis. Donec pellentesque metus et turpis aliquet
-        gravida. Vivamus vitae dui tincidunt massa pharetra cursus vel quis nunc. Donec accumsan risus eget felis
-        posuere, quis consectetur nibh tincidunt. Mauris vel leo molestie, tristique purus vel, porttitor magna.
-        Suspendisse ligula dolor, lacinia sed eleifend ut, pellentesque in magna. Nullam consectetur lacus eleifend
-        velit laoreet consequat. Ut non mattis metus. Sed tincidunt tortor vel tempus efficitur.</p>
+    <section>
+        <h4>Sterowanie</h4>
+        <div id="game-controls">
+            <div class="button-row center">
+                <button onclick="game.snake.setDirection('up');">Góra</button>
+            </div>
+            <div class="button-row center">
+                <button onclick="game.snake.setDirection('left');">Lewo</button>
+                <button onclick="game.snake.setDirection('down');">Dół</button>
+                <button onclick="game.snake.setDirection('right');">Prawo</button>
+            </div>
+        </div>
+        <p>Można sterować klawiszami <kbd>W</kbd>, <kbd>S</kbd>, <kbd>A</kbd>, <kbd>D</kbd></p>
+    </section>
+    <section class="block-labeled">
+        <h4>Ustawienia</h4>
+        <label>Ilość kolumn:
+            <input type="number" value="16" class="cols" required />
+        </label>
+        <label>Ilość wierszy:
+            <input type="number" value="10" class="rows" required />
+        </label>
+        <label>Ilość zdrowych jabłek:
+            <input type="number" value="2" class="healthy-apples" required />
+        </label>
+        <label>Maks. ilość zatrutych jabłek:
+            <input type="number" value="2" class="max-poisoned-apples" required />
+        </label>
+        <label>Prawdopodobieństwo przelosowania zatrutych jabłek:
+            <input type="range" step="0.01" max="1" min="0" value="0.95" class="poisoned-apples-change-probability percent-range" required />
+            <span class="range-label"></span>
+        </label>
+        <label>Ilość przeszkód:
+            <input type="number" value="3" class="obstacles" required />
+        </label>
+        <label>Czas trwania przerwy:
+            <input type="number" value="280" class="interval" required />
+        </label>
+        <div class="button-row center">
+            <button onclick="toggleGame.call(this);" class="trigger">Rozpocznij grę</button>
+        </div>
+    </section>
 </section>
 
 <footer>
     <p><small>Autor: <em>Kamil Drzazga.</em></small></p>
-    <p><small>Jest to projekt utowrzony na potrzebę przedmiotu <em>Techniki Internetowe</em>.</small></p>
+    <p><small>Projekt nr 1 na <em>Techniki Internetowe</em>.</small></p>
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

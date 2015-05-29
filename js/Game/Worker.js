@@ -6,17 +6,21 @@ importScripts(
 
 var lightBoard = new LightBoard();
 var isBoardUsed = false;
+var configMessageReceived = false;
+var config;
 
 this.onmessage = function(event) {
-    this.postMessage("[DEBUG] od poczatku");
     if (!isBoardUsed) {
         isBoardUsed = true;
-        lightBoard.refresh(event.data);
-        HealthyApplesGenerator(lightBoard, 2);
-        PoisonedApplesGenerator(lightBoard, 3);
-        this.postMessage(JSON.stringify(lightBoard.board));
+        if (!configMessageReceived) {
+            config = JSON.parse(event.data);
+            configMessageReceived = true;
+        } else {
+            lightBoard.refresh(event.data);
+            HealthyApplesGenerator(lightBoard, config.healthyApples);
+            PoisonedApplesGenerator(lightBoard, config.maxPoisonedApples, config.poisonedApplesChangeProbability);
+            this.postMessage(JSON.stringify(lightBoard.board));
+        }
         isBoardUsed = false;
-    } else {
-        this.postMessage("[DEBUG] WebWorker potrzebuje jescze czasu...");
     }
 };
