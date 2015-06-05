@@ -68,3 +68,7 @@ $(document).ready(function() {
     }).change();
 
 });
+
+function testMouseIntel() {
+
+}

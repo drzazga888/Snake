@@ -1,19 +1,6 @@
 function LightBoard() {
 }
 
-LightBoard.mouseIdToOrientation = function(id) {
-    switch (id) {
-        case 6:
-            return "right";
-        case 7:
-            return "left";
-        case 8:
-            return "up";
-        case 9:
-            return "down";
-    }
-};
-
 LightBoard.prototype.initStats = function() {
     this.stats = {
         healthyApples: 0,
@@ -49,7 +36,7 @@ LightBoard.prototype.generateStats = function() {
                     case 9:
                         this.stats.mice.push({
                             position: position,
-                            orientation: LightBoard.mouseIdToOrientation(this.board[row_i][col_i])
+                            orientation: MouseGenerator.mouseIdToOrientation[this.board[row_i][col_i]]
                         });
                         break;
                 }

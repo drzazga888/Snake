@@ -27,7 +27,26 @@ function Snake(board) {
             row: 0
         }
     ];
+    this.points = 0;
+    this.pointsHandler = $(".canvas-wrapper").find(".points");
 }
+
+Snake.prototype.addPoints = function(forWhat) {
+    switch (forWhat) {
+        case "healthyApple":
+            this.points += 10;
+            break;
+        case "poisonedApple":
+            this.points -= 50;
+            break;
+        case "mouse":
+            this.points += 50;
+            break;
+        default:
+            this.points += 1;
+    }
+    this.pointsHandler.text(this.points);
+};
 
 Snake.prototype.move = function() {
     this.board.getField(this.head[1]).id = 1;
@@ -51,13 +70,18 @@ Snake.prototype.move = function() {
 			break;
 	}
 	if (this.isGoodMove(newPosition)) {
-		var isApple = this.isApple(newPosition);
+		var whatEat = this.fieldToString(newPosition);
 		this.board.setField(newPosition, SnakeField, this.directions[1], "head", ++this.bodyLength);
         this.makeCorner();
-		if (!isApple)
-			this.crawl();
-		else
-			this.eat();
+		if (whatEat == "healthyApple")
+            this.eat();
+        else if (whatEat == "mouse")
+            this.eat();
+		else if (whatEat == "poisonedApple")
+            this.schrink();
+        else
+            this.crawl();
+        this.addPoints(whatEat);
 		this.board.draw();
         this.head.shift();
         this.head[1] = newPosition;
@@ -98,15 +122,32 @@ Snake.prototype.makeCorner = function() {
 Snake.prototype.isGoodMove = function(position) {
 	if (this.board.getField(position) === undefined)
 		return false;
-	return !(this.board.getField(position) instanceof SnakeField);
-};
-
-Snake.prototype.isApple = function(position) {
-	return this.board.getField(position) instanceof HealthyAppleField;
+    else if (this.board.getField(position) instanceof ObstacleField)
+        return false;
+	else if (this.board.getField(position) instanceof SnakeField)
+        return false;
+    return true;
 };
 
 Snake.prototype.eat = function() {
     this.board.getField(this.head[1]).spriteType = "body";
+};
+
+Snake.prototype.schrink = function() {
+    for (var i = 0; this.bodyLength > 2 && i < 4; ++i)
+        this.crawl();
+};
+
+Snake.prototype.fieldToString = function(position) {
+    var ref = this.board.getField(position);
+    if (ref instanceof HealthyAppleField)
+        return "healthyApple";
+    else if (ref instanceof PoisonedAppleField)
+        return "poisonedApple";
+    else if (ref instanceof MouseField)
+        return "mouse";
+    else
+        return null;
 };
 
 Snake.prototype.crawl = function() {

@@ -42,9 +42,18 @@
 
 <section>
     <h3>Gra</h3>
-    <canvas id="game-canvas">
-        <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
-    </canvas>
+    <div class="canvas-wrapper">
+        <canvas id="game-canvas">
+            <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+        </canvas>
+        <p>Punkty: <em><span class="points">0</span></em></p>
+        <section class="game-win">
+
+        </section>
+        <section class="game-loss">
+
+        </section>
+    </div>
     <section>
         <h4>Sterowanie</h4>
         <div id="game-controls">
@@ -61,31 +70,53 @@
     </section>
     <section class="block-labeled">
         <h4>Ustawienia</h4>
-        <label>Ilość kolumn:
-            <input type="number" value="16" class="cols" required />
-        </label>
-        <label>Ilość wierszy:
-            <input type="number" value="10" class="rows" required />
-        </label>
-        <label>Ilość zdrowych jabłek:
-            <input type="number" value="2" class="healthy-apples" required />
-        </label>
-        <label>Maks. ilość zatrutych jabłek:
-            <input type="number" value="2" class="max-poisoned-apples" required />
-        </label>
-        <label>Prawdopodobieństwo przelosowania zatrutych jabłek:
-            <input type="range" step="0.01" max="1" min="0" value="0.95" class="poisoned-apples-change-probability percent-range" required />
-            <span class="range-label"></span>
-        </label>
-        <label>Ilość przeszkód:
-            <input type="number" value="3" class="obstacles" required />
-        </label>
-        <label>Czas trwania przerwy:
-            <input type="number" value="280" class="interval" required />
-        </label>
-        <div class="button-row center">
-            <button onclick="toggleGame.call(this);" class="trigger">Rozpocznij grę</button>
+
+        <div class="button-row">
+
+            <fieldset>
+                <legend>Rozmiary planszy</legend>
+                <label>Ilość kolumn:
+                    <input type="number" value="16" class="cols" required />
+                </label>
+                <label>Ilość wierszy:
+                    <input type="number" value="10" class="rows" required />
+                </label>
+            </fieldset><!--
+
+            --><fieldset>
+                <legend>Inne</legend>
+                <label>Ilość przeszkód:
+                    <input type="number" value="3" class="obstacles" required />
+                </label>
+                <label>Czas trwania przerwy:
+                    <input type="number" value="280" class="interval" required />
+                </label>
+            </fieldset><!--
+
+            --><fieldset>
+                <legend>Jabłka</legend>
+                <label>Ilość zdrowych jabłek:
+                    <input type="number" value="2" class="healthy-apples" required />
+                </label>
+                <label>Maks. ilość zatrutych jabłek:
+                    <input type="number" value="2" class="max-poisoned-apples" required />
+                </label>
+                <label>Prawdopodobieństwo wylosowania zatrutych jabłek:
+                    <input type="range" step="0.01" max="1" min="0" value="0.95" class="poisoned-apples-change-probability percent-range" required />
+                    <span class="range-label"></span>
+                </label>
+            </fieldset>
+
         </div>
+
+        <div class="button-row">
+
+            <div class="button-row center">
+                <button onclick="toggleGame.call(this);" class="trigger">Rozpocznij grę</button>
+            </div>
+
+        </div>
+
     </section>
 </section>
 

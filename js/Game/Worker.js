@@ -1,7 +1,8 @@
 importScripts(
     "LightBoard.js",
     "Randomizer.js",
-    "ObjectGenerator.js"
+    "MouseGenerator.js",
+    "ApplesGenerator.js"
 );
 
 var lightBoard = new LightBoard();
@@ -19,6 +20,7 @@ this.onmessage = function(event) {
             lightBoard.refresh(event.data);
             HealthyApplesGenerator(lightBoard, config.healthyApples);
             PoisonedApplesGenerator(lightBoard, config.maxPoisonedApples, config.poisonedApplesChangeProbability);
+            MouseGenerator(lightBoard);
             this.postMessage(JSON.stringify(lightBoard.board));
         }
         isBoardUsed = false;

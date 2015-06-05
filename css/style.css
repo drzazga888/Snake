@@ -1,5 +1,9 @@
 /* główne */
 
+* {
+	box-sizing: border-box;
+}
+
 body,
 button {
 	color: #FFB357;
@@ -92,7 +96,6 @@ canvas {
 	display: block;
 	max-width: 100%;
 	border: solid 2px #af6c4b;
-	box-sizing: border-box;
 }
 
 kbd {
@@ -100,6 +103,17 @@ kbd {
     border-bottom: solid 2px #5D3A3A;
     border-radius: 2px;
     padding: 0.1em 0.4em;
+}
+
+fieldset {
+	display: inline-block;
+	width: 50%;
+	margin: 0;
+	border: solid 2px #af6c4b;
+}
+
+label {
+	display: block;
 }
 
 /* klasy */
@@ -110,14 +124,7 @@ kbd {
 
 .button-row.center {
 	text-align: center;
-}
-
-.block-labeled label {
-    display: block;
-    margin: 10px;
-    width: 800px;
-    max-width: 100%;
-    text-align: right;
+	position: relative;
 }
 
 .menu {
