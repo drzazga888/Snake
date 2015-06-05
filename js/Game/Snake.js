@@ -29,23 +29,37 @@ function Snake(board) {
     ];
     this.points = 0;
     this.pointsHandler = $(".canvas-wrapper").find(".points");
+    this.appleSound = $(".apple-sound");
+    this.mouseSound = $(".mouse-sound");
 }
 
 Snake.prototype.addPoints = function(forWhat) {
     switch (forWhat) {
         case "healthyApple":
-            this.points += 10;
+            this.points += 30;
             break;
         case "poisonedApple":
-            this.points -= 50;
+            this.points -= 100;
             break;
         case "mouse":
-            this.points += 50;
+            this.points += 100;
             break;
         default:
             this.points += 1;
     }
     this.pointsHandler.text(this.points);
+};
+
+Snake.prototype.playSound = function(forWhat) {
+    switch (forWhat) {
+        case "healthyApple":
+        case "poisonedApple":
+            this.appleSound[Math.floor(Math.random() * this.appleSound.length)].play();
+            break;
+        case "mouse":
+            this.mouseSound[Math.floor(Math.random() * this.appleSound.length)].play();
+            break;
+    }
 };
 
 Snake.prototype.move = function() {
@@ -82,6 +96,7 @@ Snake.prototype.move = function() {
         else
             this.crawl();
         this.addPoints(whatEat);
+        this.playSound(whatEat);
 		this.board.draw();
         this.head.shift();
         this.head[1] = newPosition;

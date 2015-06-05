@@ -16,12 +16,6 @@ function Game(params) {
         maxPoisonedApples: params.maxPoisonedApples,
         poisonedApplesChangeProbability: params.poisonedApplesChangeProbability
     }));
-    // debug only -----------------------------
-    //this.board.setField( {
-    //    col: 2,
-    //    row: 5
-    //}, MouseField, "up");
-    // end debug ------------------------------
     this.intervalID = window.setInterval(function() {
         game.calculate();
     }, this.interval);
@@ -32,6 +26,7 @@ function Game(params) {
             game.board.parse(event.data);
     };
     window.addEventListener("keydown", Game.keydownCallback);
+    this.canvas[0].addEventListener("click", Game.clickCallback);
 }
 
 Game.keydownCallback = function(event) {
@@ -49,6 +44,31 @@ Game.keydownCallback = function(event) {
             game.snake.setDirection('down');
             break;
     }
+};
+
+Game.clickCallback = function(event) {
+    var borderLeft = game.canvas.css("border-left-width");
+    var borderTop = game.canvas.css("border-top-width");
+    borderLeft = Number(borderLeft.substring(0, borderLeft.length - 2));
+    borderTop = Number(borderTop.substring(0, borderTop.length - 2));
+    var x = event.pageX - game.canvas.offset().left - borderLeft;
+    var y = event.pageY - game.canvas.offset().top - borderTop;
+    var snakeX = (game.snake.head[1].col + 0.5) * game.canvas.width() / game.board.size.cols;
+    var snakeY = (game.snake.head[1].row + 0.5) * game.canvas.height() / game.board.size.rows;
+    var relX = x - snakeX;
+    var relY = y - snakeY;
+    var radius = Math.sqrt(relX * relX + relY * relY);
+    var angle = Math.acos(relX / radius) * (relY ? relY < 0 ? - 1 : 1 : 0);
+    var direction = "";
+    if (angle > -Math.PI / 4 && angle <= Math.PI / 4)
+        direction = "right";
+    else if (angle > Math.PI / 4 && angle <= Math.PI * 3 / 4)
+        direction = "down";
+    else if (angle > -Math.PI * 3 / 4 && angle <= -Math.PI / 4)
+        direction = "up";
+    else if (Math.abs(angle) >= Math.PI * 3 / 4 || (relX < 0 && relY == 0))
+        direction = "left";
+    game.snake.setDirection(direction);
 };
 
 Game.prototype.calculate = function() {
@@ -77,4 +97,5 @@ Game.prototype.destruct = function() {
     this.worker.terminate();
     this.board.ctx.clearRect(0, 0, this.board.size.cols * 100, this.board.size.rows * 100);
     window.removeEventListener("keydown", Game.keydownCallback);
+    this.canvas[0].removeEventListener("click", Game.clickCallback);
 };

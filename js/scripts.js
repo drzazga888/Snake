@@ -14,7 +14,7 @@ var game;
 var isGameRunning = false;
 $("input").prop("disabled", false);
 
-function toggleGame() {
+function toggleGame(event) {
     var handler = $(this).closest("section");
     if (isGameRunning) {
         game.canvas.css({
