@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Snake - zasady gry</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Exo&amp;subset=latin,latin-ext'/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<header>
+    <video autoplay loop id="snake-video">
+        <source src="video/snake.mp4" type="video/mp4">
+        <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;video&gt;</code></em></p>
+    </video>
+    <svg width="300" height="80" id="logo">
+        <ellipse cx="120" cy="40" rx="70" ry="40" style="fill: #FFB357;"></ellipse>
+        <polygon points="140,10 260,10 200,70 140,70" style="fill: #FFB357;"></polygon>
+        <polygon points="280,10 300,10 240,70 220,70" style="fill: #c87;"></polygon>
+        <polygon points="200,10 220,10 210,40" style="fill: #c87;"></polygon>
+        <polygon points="175,70 195,70 185,40" style="fill: #c87;"></polygon>
+        <path d="M2,40 C17,80 37,0 52,40" style="fill: none; stroke: #FFB357; stroke-width: 4px;"></path>
+        <circle cx="90" cy="25" r="8" style="fill: #242736;"></circle>
+        <circle cx="90" cy="55" r="8" style="fill: #242736;"></circle>
+        <circle cx="93" cy="22" r="2" style="fill: #fff;"></circle>
+        <circle cx="93" cy="52" r="2" style="fill: #fff;"></circle>
+    </svg>
+    <h1>Snake</h1>
+    <h2>Zasady gry</h2>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="index.html">Gra</a></li>
+        <li><a class="active" href="how-to.html">Zasady gry</a></li>
+        <li><a href="docs.html">Dokumentacja</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h3>Opis gry</h3>
+    <p>Gra polega na poruszaniu się wężem w taki sposób, by przeżyć jak najdłużej, zbierając przy tym punkty.</p>
+    <p>Śmierć węża następuje gdy uderzy on w ścianę boczną gry lub w przeszkodę / blok.
+        <!-- TODO obstacle -->
+        <canvas id="obstacle-example" width="100" height="100">
+            <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+        </canvas>
+    </p>
+    <p>Punkty są przyznawane bądź tracone za:</p>
+    <ul>
+        <li>Zjedzenie "zdrowego" jabłka - przyznawane jest <em>30</em> punktów. Na planszy zawsze jest dokładnie taka ilość zdrowych jabłek, jaka została wpisana w ustawieniach.
+            <!-- TODO healthyApple -->
+            <canvas id="healthy-apple-example" width="100" height="100">
+                <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+            </canvas>
+        </li>
+        <li>Zjedzenie zatrutego jabłka - odejmowane jest <em>100</em> punktów. Zatrutych jabłek może być co najwyżej tyle, ile zostało wpisanych w ustawieniach.
+            <!-- TODO poisonedApple -->
+            <canvas id="poisoned-apple-example" width="100" height="100">
+                <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+            </canvas>
+        </li>
+        <li>Zjedzenie myszy - przyznawane jest <em>100</em> punktów. Mysz jest elementem ruchomym, zawsze jest tylko jedna na planszy. Boi się gdy zauważa węża - wtedy ucieka w przeciwnym kierunku do największego zagrożenia. W pojedyńczym ruchu mysz może:
+            <ul>
+                <li>Ruszyć do przodu</li>
+                <li>Skręcić w lewo</li>
+                <li>Skręcić w prawo</li>
+                <li>Nic nie robić</li>
+            </ul>
+            <!-- TODO mouse -->
+            <canvas id="mouse-example" width="100" height="100">
+                <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+            </canvas>
+        </li>
+        <li>Przeżycie - za odświeżenie planszy przyznawany jest <em>1</em> punkt (gdy nie zebraliśmy jakiegokolwiek z powyższych bonusów)</li>
+    </ul>
+    <p>Po grze zakończonej sukcesem (wszystkie pola są zapełnione) lub porażką nadpisywany jest wynik z najwyższą notą, o ile został on pobity.</p>
+</section>
+
+<section>
+    <h3>Rozpoczynanie gry</h3>
+    <ol>
+        <li>(opcjonalnie) Na <a href="index.html">stronie głównej</a> należy wprowadzić <a href="index.html#settings">ustawienia</a> (opisane są poniżej).</li>
+        <li>Później należy kliknąć w przycisk <em>Rozpocznij grę</em>.</li>
+        <li>Naszym oczom ukaże się plansza, a ustawienia gry zostaną zablokowane. Należy teraz wspomnieć o tym, że plansza może znajdować się w różnych stanach takich jak:
+            <ul>
+                <li>Stan wstrymania / rozpoczynania gry (aktualny stan)</li>
+                <li>Stan trwania gry - możemy przerwać grę na chwilę i do niej powrócić</li>
+                <li>Wygrana</li>
+                <li>Przegrana</li>
+            </ul>
+            Tutaj znajduje się rozpiska co i kiedy jest wyświetlane:
+            <ul>
+                <li>Ilość punktów - wyświetlana jest zawsze, z wyjątkiem stanu wstrzymania / rozpoczynania gry.</li>
+                <li>Przycisk <em>wznów</em> (wznawia przerwaną grę) - tylko stan wstrzymania / rozpoczynania gry.</li>
+                <li>Przycisk <em>restart</em> (rozpoczyna grę od nowa) - zawsze, z wyjątkiem stanu trwania gry.</li>
+                <li>Przycisk <em>zakończ grę</em> (kończy grę, zeruje rekordowy wynik i pozwala wprowadzać ustawiania) - zawsze, z wyjątkiem stanu trwania gry.</li>
+            </ul>
+            W sytuacji, gdy przed chwilą pojawiła się plansza, należy wybrać <em>wznów</em> lun <em>restart</em> (taki sam efekt).
+        </li>
+        <li>Gra się rozpocznie, aby ją całkowicie zakończyć należy ją najpierw zatrzymać (sterowanie opisane poniżej), a potem kliknąć <em>zakończ grę</em>.</li>
+    </ol>
+</section>
+
+<section>
+    <h3>Ustawienia</h3>
+    <h4>Rozmiar planszy</h4>
+    <ul>
+        <li>Ilość kolumn (domyślnie 16) - liczba pól w poziomie</li>
+        <li>Ilość wierszy (domyślnie 10) - liczba pól w pionie</li>
+    </ul>
+    <h4>Jabłka</h4>
+    <ul>
+        <li>Ilość zdrowych jabłek (domyślnie 2) - liczba jabłek na planszy, jest to stała ilość, gdy wąż zje jabłko zostanie ono wegenerowane ponownie</li>
+        <li>Maks. ilość zatrutych jabłek (domyślnie 3) - maksymalna liczba zatrutych jabłek na planszy tzn. ich liczba w trakcie gry ulega zmianie, zmieniana jest również ich pozycja</li>
+        <li>Prawdopodobieństwo zachowania ustawienia zatrutych jabłek (domyślnie 95%) - jest to szansa na to, że ilośc lub pozycja zatrutych jabłek na planszy nie ulegnie zmianie. Odpowiednie losowanie decydujące o tym, czy tak się stanie wykonywane jest zawsze po odświeżeniu stanu planszy</li>
+    </ul>
+    <h4>Inne</h4>
+    <ul>
+        <li>Ilość przeszkód (domyślnie 3) - liczba bloków na planszy; gdy wąż uderzy w którykolwiek to ginie</li>
+        <li>Czas trwania przerwy [ms] (domyślnie 280) - czas, po którym ponownie nastąpi odświeżenie stanu gry na planszy; operacja ta podcza gry wykonywanie jest nieustannie aż do momentu wstzrymania</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Sterowanie</h3>
+    <p>Kierowanie wężem:</p>
+    <ul>
+        <li>Sterowanie klawiszami <kbd>W</kbd>, <kbd>S</kbd>, <kbd>A</kbd>, <kbd>D</kbd></li>
+        <li>Klikanie lewym przyciskiem myszy w odpowiednim kierunku na planszy</li>
+    </ul>
+    <p>Zatrzymanie gry:</p>
+    <ul>
+        <li>Naciśnięcie <kbd>P</kbd></li>
+        <li>Kliknięcie poza obszar planszy</li>
+    </ul>
+    <p>Wznowienie gry:</p>
+    <ul>
+        <li>Naciśnięcie <kbd>P</kbd></li>
+        <li>Naciśnięcie przycisku <em>wznów</em> na planszy</li>
+    </ul>
+</section>
+
+<footer>
+    <p><small>Autor: <em>Kamil Drzazga.</em></small></p>
+    <p><small>Projekt nr 1 na <em>Techniki Internetowe</em>.</small></p>
+</footer>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/Game/Board/AppleField.js"></script>
+<script src="js/Game/Board/HealthyAppleField.js"></script>
+<script src="js/Game/Board/PoisonedAppleField.js"></script>
+<script src="js/Game/Board/ObstacleField.js"></script>
+<script src="js/Game/Board/MouseField.js"></script>
+
+</body>
+</html>

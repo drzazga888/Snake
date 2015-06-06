@@ -1,5 +1,6 @@
 function Game(params) {
-    this.canvas = $("#" + params.canvasID);
+    this.handler = params.handler;
+    this.canvas = this.handler.find("canvas");
     this.canvas[0].width = params.size.cols * 100;
     this.canvas[0].height = params.size.rows * 100;
     this.board = new Board( {
@@ -8,7 +9,8 @@ function Game(params) {
         obstacles: params.obstacles
     });
     this.interval = params.interval;
-	this.snake = new Snake(this.board);
+    this.maxPointsHandler = this.handler.find(".max-points");
+	this.snake = new Snake(this.board, this.handler);
     this.board.putObstacles();
     this.worker = new Worker("js/Game/Worker.js");
     this.worker.postMessage(JSON.stringify( {
@@ -16,37 +18,65 @@ function Game(params) {
         maxPoisonedApples: params.maxPoisonedApples,
         poisonedApplesChangeProbability: params.poisonedApplesChangeProbability
     }));
+    this.paused = true;
+    this.changeLayer("game-paused");
+    this.worker.onmessage = function(event) {
+        game.board.parse(event.data);
+    };
+    window.addEventListener("keydown", Game.keydownCallback);
+}
+
+Game.prototype.pause = function() {
+    this.handler.find(".layer-wrapper")[0].removeEventListener("click", Game.clickCallback);
+    document.removeEventListener("click", Game.clickedOutsideCallback);
+    window.clearInterval(this.intervalID);
+    this.paused = true;
+    game.changeLayer("game-paused");
+};
+
+Game.prototype.play = function() {
     this.intervalID = window.setInterval(function() {
         game.calculate();
     }, this.interval);
-    this.worker.onmessage = function(event) {
-        if (event.data.startsWith("[DEBUG]"))
-            console.log(event.data);
-        else
-            game.board.parse(event.data);
-    };
-    window.addEventListener("keydown", Game.keydownCallback);
-    this.canvas[0].addEventListener("click", Game.clickCallback);
-}
+    this.paused = false;
+    game.changeLayer("game-running");
+    this.handler.find(".layer-wrapper")[0].addEventListener("click", Game.clickCallback);
+    document.addEventListener("click", Game.clickedOutsideCallback);
+};
+
+Game.prototype.changeLayer = function(name) {
+    this.handler.find(".layer").hide().filter("." + name).show();
+};
 
 Game.keydownCallback = function(event) {
     switch (event.keyCode) {
-        case 65:
+        case 65: // [a]
             game.snake.setDirection('left');
             break;
-        case 87:
+        case 87: // [w]
             game.snake.setDirection('up');
             break;
-        case 68:
+        case 68: // [d]
             game.snake.setDirection('right');
             break;
-        case 83:
+        case 83: // [s]
             game.snake.setDirection('down');
+            break;
+        case 80: // [p]
+            if (game.paused)
+                game.play();
+            else
+                game.pause();
             break;
     }
 };
 
+Game.clickedOutsideCallback = function() {
+    game.pause();
+};
+
 Game.clickCallback = function(event) {
+    event.stopPropagation();
     var borderLeft = game.canvas.css("border-left-width");
     var borderTop = game.canvas.css("border-top-width");
     borderLeft = Number(borderLeft.substring(0, borderLeft.length - 2));
@@ -78,14 +108,14 @@ Game.prototype.calculate = function() {
         this.destruct();
         switch (movementResult) {
             case "win":
-                this.canvas.css( {
-                    backgroundImage: "url(img/game_over.png)"
-                });
+                if (Number(this.maxPointsHandler.eq(0).text()) < this.snake.points)
+                    this.maxPointsHandler.text(this.snake.points);
+                this.changeLayer("game-win");
                 break;
             case "loss":
-                this.canvas.css( {
-                    backgroundImage: "url(img/game_over.png)"
-                });
+                if (Number(this.maxPointsHandler.eq(0).text()) < this.snake.points)
+                    this.maxPointsHandler.text(this.snake.points);
+                this.changeLayer("game-over");
                 break;
         }
     }
@@ -93,9 +123,8 @@ Game.prototype.calculate = function() {
 };
 
 Game.prototype.destruct = function() {
-    window.clearInterval(this.intervalID);
+    this.pause();
     this.worker.terminate();
     this.board.ctx.clearRect(0, 0, this.board.size.cols * 100, this.board.size.rows * 100);
     window.removeEventListener("keydown", Game.keydownCallback);
-    this.canvas[0].removeEventListener("click", Game.clickCallback);
 };

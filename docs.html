@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Snake - dokumentacja</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Exo&amp;subset=latin,latin-ext'/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<header>
+    <video autoplay loop id="snake-video">
+        <source src="video/snake.mp4" type="video/mp4">
+        <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;video&gt;</code></em></p>
+    </video>
+    <svg width="300" height="80" id="logo">
+        <ellipse cx="120" cy="40" rx="70" ry="40" style="fill: #FFB357;"></ellipse>
+        <polygon points="140,10 260,10 200,70 140,70" style="fill: #FFB357;"></polygon>
+        <polygon points="280,10 300,10 240,70 220,70" style="fill: #c87;"></polygon>
+        <polygon points="200,10 220,10 210,40" style="fill: #c87;"></polygon>
+        <polygon points="175,70 195,70 185,40" style="fill: #c87;"></polygon>
+        <path d="M2,40 C17,80 37,0 52,40" style="fill: none; stroke: #FFB357; stroke-width: 4px;"></path>
+        <circle cx="90" cy="25" r="8" style="fill: #242736;"></circle>
+        <circle cx="90" cy="55" r="8" style="fill: #242736;"></circle>
+        <circle cx="93" cy="22" r="2" style="fill: #fff;"></circle>
+        <circle cx="93" cy="52" r="2" style="fill: #fff;"></circle>
+    </svg>
+    <h1>Snake</h1>
+    <h2>Dokumentacja</h2>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="index.html">Gra</a></li>
+        <li><a href="how-to.html">Zasady gry</a></li>
+        <li><a class="active" href="docs.html">Dokumentacja</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h3>Ogólny opis gry</h3>
+    <p>Dokumentacja kodu w drodze - będzie w postaci opisu ogólnego (tutaj) oraz szczegółowego, w plikach <code>.js</code></p>
+</section>
+
+<footer>
+    <p><small>Autor: <em>Kamil Drzazga.</em></small></p>
+    <p><small>Projekt nr 1 na <em>Techniki Internetowe</em>.</small></p>
+</footer>
+
+</body>
+</html>

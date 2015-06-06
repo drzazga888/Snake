@@ -1,4 +1,4 @@
-function Snake(board) {
+function Snake(board, handler) {
     this.bodyLength = 0;
     this.directions = [
         "right",
@@ -28,7 +28,7 @@ function Snake(board) {
         }
     ];
     this.points = 0;
-    this.pointsHandler = $(".canvas-wrapper").find(".points");
+    this.pointsHandler = handler.find(".points");
     this.appleSound = $(".apple-sound");
     this.mouseSound = $(".mouse-sound");
 }
@@ -47,6 +47,8 @@ Snake.prototype.addPoints = function(forWhat) {
         default:
             this.points += 1;
     }
+    if (this.points < 0)
+        this.points = 0;
     this.pointsHandler.text(this.points);
 };
 

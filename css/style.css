@@ -46,7 +46,7 @@ h3 {
 }
 
 h4 {
-	font-size: 1.2em;
+	font-size: 1.15em;
 	text-transform: uppercase;
 }
 
@@ -65,9 +65,26 @@ a:hover {
 	text-shadow: #f90 0 0 10px;
 }
 
+ul,
+ol {
+	margin: 20px;
+	padding: 0 0 0 1.5em;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+	margin: 0 20px;
+}
+
+li {
+	margin: 5px 0;
+}
+
 button {
 	display: inline-block;
-	margin: 10px;
+	margin: 0 0 20px 20px;
 	vertical-align: middle;
 	padding: 0.5em;
 	cursor: pointer;
@@ -106,26 +123,28 @@ kbd {
 }
 
 fieldset {
-	display: inline-block;
-	width: 50%;
-	margin: 0;
 	border: solid 2px #af6c4b;
 }
 
 label {
 	display: block;
+	margin: 10px;
+}
+
+input {
+	width: 100px;
+}
+
+input[type="number"],
+input[type="text"] {
+	border: none;
+	border-bottom: solid 2px #af6c4b;
+	background: transparent none;
+	color: #FDC96D;
+	margin: 0 5px;
 }
 
 /* klasy */
-
-.button-row {
-	margin: -10px 10px 10px;
-}
-
-.button-row.center {
-	text-align: center;
-	position: relative;
-}
 
 .menu {
 	margin: 0;
@@ -161,6 +180,49 @@ label {
 	padding: 0.6em;
 }
 
+.layer-wrapper {
+	position: relative;
+	display: table;
+	margin: 10px auto;
+}
+
+.layer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	margin: 10px;
+	display: none;
+}
+
+.grid {
+	position: relative;
+	margin: 10px;
+	text-align: center;
+}
+
+.grid .per50 {
+	display: inline-block;
+	width: 50%;
+	min-width: 280px;
+	margin: 0;
+	vertical-align: top;
+	text-align: left;
+}
+
+.grid .per50 > * {
+	margin: 10px;
+}
+
+.locked:after {
+	content: "[ZABLOKOWANE]";
+	color: #f00;
+	margin-left: 5px;
+	font-size: 0.8em;
+}
+
 /* specialne elementy */
 
 body > * {
@@ -190,24 +252,39 @@ body > section:last-of-type {
 	border-bottom: none;
 }
 
-#game-canvas {
-	border-width: 10px;
-    border-radius: 5px;
-	background-color: #392F38;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#logo {
+	display: block;
+	margin: 35px auto 20px;
 }
 
 #snake-video {
-    position: absolute;
-    bottom: -35%;
-    left: -5%;
-    width: 110%;
-    z-index: -1000;
+	position: absolute;
+	top: 55%;
+	left: 55%;
+	min-width: 110%;
+	min-height: 110%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-webkit-transform: translateX(-55%) translateY(-55%);
+	transform: translateX(-55%) translateY(-55%);
 }
 
-#game-canvas,
-#game-controls {
-    display: none;
+#game canvas {
+	border-width: 10px;
+	border-radius: 5px;
+	background: #392F38 no-repeat center;
+	background-size: contain;
+	display: none;
+	margin: 0;
+}
+
+.game-over {
+	background: url(../img/game_over.png) center no-repeat;
+	background-size: contain;
+}
+
+.game-over,
+.game-paused {
+	background-color: rgba(0, 0, 0, 0.5);
 }

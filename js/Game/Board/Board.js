@@ -114,7 +114,6 @@ Board.prototype.convertIdToField = function(position, id) {
 };
 
 Board.prototype.parse = function(stringifiedBoard) {
-    //console.log(stringifiedBoard);
 	var parsed = JSON.parse(stringifiedBoard);
     for (var row_i = 0; row_i < this.size.rows; ++row_i) {
         for (var col_i = 0; col_i < this.size.cols; ++col_i) {
