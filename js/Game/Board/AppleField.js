@@ -1,16 +1,35 @@
+/**
+ * AppleField reprezentuje jabłko na planszy
+ * @param ctx - obiekt CanvasRenderingContext2D, który się używa do rysowania
+ * @param position - obiekt, który zawiera pole col i row, jest to pozycja pola na planszy
+ * @param id - nr ID, który jest używany do konwersji tego pola na liczbę, gdy chcemy przesłać planszę do WebWorkera
+ * @param peelColor - kolor skórki jabłka
+ * @param leafColor - kolor liścia na jabłku
+ * @constructor
+ */
 function AppleField(ctx, position, id, peelColor, leafColor) {
 	Field.call(this, ctx, position, id);
     this.peelColor = peelColor;
     this.leafColor = leafColor;
 }
 
+/**
+ * Realizowanie dziedziczenia obiektu AppleField po Field
+ * @type {Field}
+ */
 AppleField.prototype = Object.create(Field.prototype);
 AppleField.prototype.constructor = AppleField;
 
+/**
+ * Metoda wywoływana do narysowania kształtu
+ */
 AppleField.prototype.draw = function() {
     Field.prototype.draw.call(this, AppleField.prototype.drawApple);
 };
 
+/**
+ * Metoda pomocnicza używana przez metodę draw(), maluje jabłko na płótnie (canvas)
+ */
 AppleField.prototype.drawApple = function() {
     // główna część jabłka
     this.ctx.fillStyle = this.peelColor;

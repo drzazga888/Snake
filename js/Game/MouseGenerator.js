@@ -1,10 +1,16 @@
+/**
+ * Obiekt ten analizuje czy mysz jest na planszy i w razie potrzeby dodaje ją bądź ją porusza / obraca
+ * @param lightBoard - zredukowana plansza (dla WebWorkera) wraz z wygrenerowanymi statystykami
+ * @constructor
+ */
 function MouseGenerator(lightBoard) {
     // 1) upewnienie się, czy mysz istnieje
     if (lightBoard.stats.mice.length == 0) {
         var position = Randomizer.getValidField(lightBoard.board, function(id) {
             return id == 0;
         });
-        lightBoard.board[position.row][position.col] = Math.floor(Math.random() * 4) + 6;
+        if (position)
+            lightBoard.board[position.row][position.col] = Math.floor(Math.random() * 4) + 6;
         MouseGenerator.isDangerous = false;
         MouseGenerator.timeInFear = 0;
     } else {
@@ -84,6 +90,16 @@ function MouseGenerator(lightBoard) {
     }
 }
 
+/**
+ * Metoda pomocnicza, porusza myszą
+ * @param how - sposób poruszenia mysz:
+ *  - "forward" - pójście do przodu
+ *  - "left" - skręt ciałem w lewo
+ *  - "right" - skręt w prawo
+ * @param mouse - obiekt, który zawiera pozycję myszy: {col, row}, oraz jej orientację (kierunek patrzenia)
+ * @param board - plansza, na której metoda będzie działać
+ * @returns {boolean} - true, jeśli mysz się poruszyła, w przeciwnym wypadku false
+ */
 MouseGenerator.move = function(how, mouse, board) {
     switch (how) {
         case "forward":
@@ -166,6 +182,11 @@ MouseGenerator.orientationToMouseId = {
     "down": 9
 };
 
+/**
+ * Metoda pomocnicza, na podstawie poziomu strachu w kierunku lewym, prawym i na wprost myszy wybiera kierunek, który jest najbardziej niebezpieczny
+ * @param fears - obiekt, reprezentuje poziom strachu, zawiera pola left, right i forward, wartością ich jest właśnie ten poziom strachu
+ * @returns {string|direction|*} - zwracany jest kierunek, który jest najbardziej niebezpieczny
+ */
 MouseGenerator.getTheMostDangerousMove = function(fears) {
     // konwertowanie elementów obiektu na tablicę
     var tab = [];
@@ -180,6 +201,14 @@ MouseGenerator.getTheMostDangerousMove = function(fears) {
     return tab[0].direction;
 };
 
+/**
+ * Metoda pomocnicza, która oblicza pola, które widzi mysz
+ * @param x - nr kolumny pola
+ * @param y - nr wiersza pola
+ * @param r - promień zasięgu myszy
+ * @param mouse - obiekt zawierający pozycję myszy i jej kierunek patrzenia
+ * @returns {boolean} - true, jeśli podane pole znajduje się w zasięgu widzenia myszy, false w przeciwnym wypadku
+ */
 MouseGenerator.isFieldInViewArea = function(x, y, r, mouse) {
     var xOffset = 0;
     var yOffset = 0;
@@ -202,6 +231,11 @@ MouseGenerator.isFieldInViewArea = function(x, y, r, mouse) {
     return (xPart * xPart) + (yPart * yPart) <= (r * r);
 };
 
+/**
+ * Oblicza poziom strachu dla pola z planszy
+ * @param id - pole naszej okrojonej planszy, czyli nr ID pola
+ * @returns {number} - poziom strachu
+ */
 MouseGenerator.calculateFearLevel = function(id) {
     switch (id) {
         case 2:
@@ -212,6 +246,12 @@ MouseGenerator.calculateFearLevel = function(id) {
     return 0;
 };
 
+/**
+ * Metoda pomocnicza, która oblicza poziom strachu w kierunku patrzenia myszy na wprost, na lewo i na prawo
+ * @param mouse - mysz, czyli obiekt zawierający jej pozycję i orientację
+ * @param spotted - tablica z pozycjami pól, które mysz zaobserwowała
+ * @returns {{left, forward: number, right}} - poziomy strachu dla różnych kierunków
+ */
 MouseGenerator.getFearsOfAreas = function(mouse, spotted) {
     var totalSum = MouseGenerator.sumFears(spotted, function() {
         return true;
@@ -230,6 +270,12 @@ MouseGenerator.getFearsOfAreas = function(mouse, spotted) {
     };
 };
 
+/**
+ * Metoda sumuje poziomy strachu
+ * @param range - tablica z pozycjami pól, które mysz zaobserwowała
+ * @param validator - funkcja, która zwraca true, gdy pole należy zliczyć, false w przeciwnym wypadku
+ * @returns {number} - suma wsyzstkich strachów
+ */
 MouseGenerator.sumFears = function(range, validator) {
     var sumOfFears = 0;
     for (var i = 0; i < range.length; ++i) {
@@ -239,6 +285,18 @@ MouseGenerator.sumFears = function(range, validator) {
     return sumOfFears;
 };
 
+/**
+ * Funkcja pomocnicza, zwraca prametry funkcji liniowych, które oddzielają zaobserwowane pola przez myszę na te, które są na lewo, na wprost i na prawo od niej
+ * @param mouse - mysz, czyli obiekt zawierający jej pozycję i orientację
+ * @returns {{leftSided: {}, rightSided: {}}} - obiekt z parametrami funkcji liniowych:
+ *  - leftSided - dzieli obszar na lewo od myszy na obsza na wprost
+ *  - rightSided - analogicznie, obszar na wprost i obszar na prawo,
+ *  Każde takie pole zawiera pola:
+ *  - a
+ *  - b
+ *  - sider
+ *  ... które tworzą funkcję liniową: y * sider >= sider * (a * x + b), gdzie (x, y) - zmienne
+ */
 MouseGenerator.getDivisionalLinearFunctions = function(mouse) {
     var functions = {
         leftSided: {},

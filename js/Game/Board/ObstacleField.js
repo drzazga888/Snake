@@ -1,14 +1,30 @@
+/**
+ * Jest to pole przedstawiające przeszkodę na planszy
+ * @param ctx - obiekt CanvasRenderingContext2D, który używa się do rysowania
+ * @param position - obiekt, który zawiera pole col i row, jest to pozycja pola na planszy
+ * @constructor
+ */
 function ObstacleField(ctx, position) {
     Field.call(this, ctx, position, 5);
 }
 
+/**
+ * Realizowanie dziedziczenia obiektu EmptyField po Field
+ * @type {Field}
+ */
 ObstacleField.prototype = Object.create(Field.prototype);
 ObstacleField.prototype.constructor = ObstacleField;
 
+/**
+ * Metoda wywoływana do narysowania kształtu
+ */
 ObstacleField.prototype.draw = function() {
     Field.prototype.draw.call(this, ObstacleField.prototype.drawObstacle);
 };
 
+/**
+ * Metoda pomocnicza używana przez metodę draw(), maluje przeszkodę na płótnie (canvas)
+ */
 ObstacleField.prototype.drawObstacle = function() {
     this.ctx.fillStyle = "#af6c4b";
     this.ctx.fillRect(0, 0, 100, 100);

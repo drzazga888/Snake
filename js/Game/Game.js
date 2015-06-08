@@ -1,3 +1,15 @@
+/**
+ * Główny konstruktor gry
+ * @param params - obiekt grupujący parametry:
+ *  - handler - uchwyt biblioteki jQuery, wskazuje na element HTML, w którym zawarte jest nasze płótno (canvas) i warstwy (nakładki) na to płótno
+ *  - size - rozmiar planszy, obiekt zawierający pola rows (wiersze) i cols (kolumny)
+ *  - interval - czas, po którym znowu zostanie odświeżona plansza, parametr dla funkcji window.setInterval
+ *  - obstacles - ilość przeszkód
+ *  - healthyApples - ilość zdrowych jabłek
+ *  - maxPoisonedApples - maksymalna ilość zatrutych jabłek
+ *  - poisonedApplesChangeProbability - prawdopodobieństwo tego, że nie zostanie zmieniony stan zatrutych jabłek na planszy po jej odświeżeniu
+ * @constructor
+ */
 function Game(params) {
     this.handler = params.handler;
     this.canvas = this.handler.find("canvas");
@@ -26,6 +38,9 @@ function Game(params) {
     window.addEventListener("keydown", Game.keydownCallback);
 }
 
+/**
+ * Metoda zatrzymuje grę
+ */
 Game.prototype.pause = function() {
     this.handler.find(".layer-wrapper")[0].removeEventListener("click", Game.clickCallback);
     document.removeEventListener("click", Game.clickedOutsideCallback);
@@ -34,6 +49,9 @@ Game.prototype.pause = function() {
     game.changeLayer("game-paused");
 };
 
+/**
+ * Metoda wznawia zatrzymaną grę
+ */
 Game.prototype.play = function() {
     this.intervalID = window.setInterval(function() {
         game.calculate();
@@ -44,10 +62,22 @@ Game.prototype.play = function() {
     document.addEventListener("click", Game.clickedOutsideCallback);
 };
 
+/**
+ * Metoda zmienia aktualną nakładkę na planszę
+ * @param name - nazwa nakładki, dostępne:
+ *  - "game-running" - nakładka używana, gdy gra nie jest zatrzymana
+ *  - "game-over" - nakładka używana, gdy wąż zginie
+ *  - "game-win" - nakładka używana, gdy ktoś wygra grę
+ *  - "game-paused" - nakłądka używana, gdy ktoś albo uruchomił grę, albo ją zatrzymał
+ */
 Game.prototype.changeLayer = function(name) {
     this.handler.find(".layer").hide().filter("." + name).show();
 };
 
+/**
+ * Fukcja, która jest handlerem eventu naciśnięcia klawisza
+ * @param event - obiekt zdarzenia javascriptu
+ */
 Game.keydownCallback = function(event) {
     switch (event.keyCode) {
         case 65: // [a]
@@ -71,10 +101,18 @@ Game.keydownCallback = function(event) {
     }
 };
 
-Game.clickedOutsideCallback = function() {
+/**
+ * Handler dla zdarzenia naciśnięcia poza planszę
+ * @param event - obiekt zdarzenia javascriptu
+ */
+Game.clickedOutsideCallback = function(event) {
     game.pause();
 };
 
+/**
+ * Handler dla naciśnięcia przycisku myszy na płótnie
+ * @param event - obiekt zdarzenia javascriptu
+ */
 Game.clickCallback = function(event) {
     event.stopPropagation();
     var borderLeft = game.canvas.css("border-left-width");
@@ -101,6 +139,9 @@ Game.clickCallback = function(event) {
     game.snake.setDirection(direction);
 };
 
+/**
+ * Funkcja, która jest parametrem funkcji setInterval, wykonywana jest co jakiś czas dopóki nie zostanie to przerwane; funkcja rysuje planszę, sprawdza czy wygraliśmy bądź przegraliśmy i wysyła dane do WebWorkera
+ */
 Game.prototype.calculate = function() {
     this.board.draw();
     var movementResult = this.snake.move();
@@ -122,6 +163,9 @@ Game.prototype.calculate = function() {
     this.worker.postMessage(this.board.stringify());
 };
 
+/**
+ * Funkcja niszczy grę
+ */
 Game.prototype.destruct = function() {
     this.pause();
     this.worker.terminate();

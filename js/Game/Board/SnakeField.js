@@ -1,3 +1,20 @@
+/**
+ * Obiekt reprezentuje określoną część ciała węża na planszy
+ * @param ctx - obiekt CanvasRenderingContext2D, który używa się do rysowania
+ * @param position - obiekt, który zawiera pole col i row, jest to pozycja pola na planszy
+ * @param orientation - orientacja części ciała węża, możliwe wartości:
+ *  - "up"
+ *  - "down"
+ *  - "left"
+ *  - "right"
+ *  - kombinacje [param1]-[param2] np "up-left", używane do zagięć ciała węża
+ * @param spriteType - typ części ciała:
+ *  - "head" - głowa
+ *  - "body" - dowolny odcinek pomiędzy głową a ogonem
+ *  - "tail" - ogon
+ * @param part - określony odcinek węża
+ * @constructor
+ */
 function SnakeField(ctx, position, orientation, spriteType, part) {
 	Field.call(this, ctx, position, spriteType == "head" ? 2 : 1);
     this.spriteType = spriteType;
@@ -5,9 +22,16 @@ function SnakeField(ctx, position, orientation, spriteType, part) {
 	this.part = part;
 }
 
+/**
+ * Realizowanie dziedziczenia obiektu SnakeField po Field
+ * @type {AppleField}
+ */
 SnakeField.prototype = Object.create(Field.prototype);
 SnakeField.prototype.constructor = SnakeField;
 
+/**
+ * Metoda wywoływana do narysowania kształtu
+ */
 SnakeField.prototype.draw = function() {
     switch (this.spriteType) {
         case "head":
@@ -47,6 +71,9 @@ SnakeField.prototype.draw = function() {
     }
 };
 
+/**
+ * Metoda pomocnicza do rysowania głowy węża
+ */
 SnakeField.prototype.drawHead = function() {
     // ogólne style do ciała
     this.ctx.fillStyle = "#FFB357";
@@ -87,6 +114,9 @@ SnakeField.prototype.drawHead = function() {
     this.ctx.fill();
 };
 
+/**
+ * Metoda pomocnicza do rysowania nizagiętej części ciała węża
+ */
 SnakeField.prototype.drawBody = function() {
     // ogólne style do ciała
     this.ctx.fillStyle = "#FFB357";
@@ -110,6 +140,9 @@ SnakeField.prototype.drawBody = function() {
     this.ctx.fill();
 };
 
+/**
+ * Metoda pomocnicza do rysowania zagiętej części ciała węża
+ */
 SnakeField.prototype.drawBodyCorner = function() {
     // ogólne style do ciała
     this.ctx.fillStyle = "#FFB357";
@@ -149,6 +182,9 @@ SnakeField.prototype.drawBodyCorner = function() {
     this.ctx.restore();
 };
 
+/**
+ * Metoda pomocnicza do rysowania nizagiętej ogona
+ */
 SnakeField.prototype.drawTail = function() {
     // ogólne style do ciała
     this.ctx.fillStyle = "#FFB357";

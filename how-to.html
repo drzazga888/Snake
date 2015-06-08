@@ -42,22 +42,18 @@
 <section>
     <h3>Opis gry</h3>
     <p>Gra polega na poruszaniu się wężem w taki sposób, by przeżyć jak najdłużej, zbierając przy tym punkty.</p>
-    <p>Śmierć węża następuje gdy uderzy on w ścianę boczną gry lub w przeszkodę / blok.
-        <!-- TODO obstacle -->
-        <canvas id="obstacle-example" width="100" height="100">
-            <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
-        </canvas>
-    </p>
+    <p>Śmierć węża następuje gdy uderzy on w ścianę boczną gry lub w przeszkodę / blok.</p>
+    <canvas id="obstacle-example" width="100" height="100">
+        <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
+    </canvas>
     <p>Punkty są przyznawane bądź tracone za:</p>
     <ul>
         <li>Zjedzenie "zdrowego" jabłka - przyznawane jest <em>30</em> punktów. Na planszy zawsze jest dokładnie taka ilość zdrowych jabłek, jaka została wpisana w ustawieniach.
-            <!-- TODO healthyApple -->
             <canvas id="healthy-apple-example" width="100" height="100">
                 <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
             </canvas>
         </li>
         <li>Zjedzenie zatrutego jabłka - odejmowane jest <em>100</em> punktów. Zatrutych jabłek może być co najwyżej tyle, ile zostało wpisanych w ustawieniach.
-            <!-- TODO poisonedApple -->
             <canvas id="poisoned-apple-example" width="100" height="100">
                 <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
             </canvas>
@@ -69,7 +65,6 @@
                 <li>Skręcić w prawo</li>
                 <li>Nic nie robić</li>
             </ul>
-            <!-- TODO mouse -->
             <canvas id="mouse-example" width="100" height="100">
                 <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
             </canvas>
@@ -144,16 +139,17 @@
 </section>
 
 <footer>
-    <p><small>Autor: <em>Kamil Drzazga.</em></small></p>
+    <p><small>Autor: <em>Kamil Drzazga</em>.</small></p>
     <p><small>Projekt nr 1 na <em>Techniki Internetowe</em>.</small></p>
 </footer>
 
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/Game/Board/Field.js"></script>
 <script src="js/Game/Board/AppleField.js"></script>
-<script src="js/Game/Board/HealthyAppleField.js"></script>
 <script src="js/Game/Board/PoisonedAppleField.js"></script>
 <script src="js/Game/Board/ObstacleField.js"></script>
 <script src="js/Game/Board/MouseField.js"></script>
+<script src="js/examples.js"></script>
 
 </body>
 </html>

@@ -1,3 +1,9 @@
+/**
+ * Konstruktor obiektu wąż, m. in. ustawia węża na planszę
+ * @param board - plansza
+ * @param handler - uchwyt biblioteki jQuery, który zawiera element HTML z canvasem i warstwami nakładanymi na niego
+ * @constructor
+ */
 function Snake(board, handler) {
     this.bodyLength = 0;
     this.directions = [
@@ -33,6 +39,14 @@ function Snake(board, handler) {
     this.mouseSound = $(".mouse-sound");
 }
 
+/**
+ * Dodaje punkty
+ * @param forWhat - napis, który mówi za comamy dodać (odjąć) punkty:
+ * - "healthyApple" - za zjedzenie zdrowego jabłka
+ * - "poisonedApple" - za zjedzenie chorego jabłka
+ * - "mouse" - za zjedzenie myszy
+ * - cokolwiek innego lub brak parametru - za przeżycie
+ */
 Snake.prototype.addPoints = function(forWhat) {
     switch (forWhat) {
         case "healthyApple":
@@ -52,6 +66,13 @@ Snake.prototype.addPoints = function(forWhat) {
     this.pointsHandler.text(this.points);
 };
 
+/**
+ * Metoda gra dźwięk gdy wąż coś zje
+ * @param forWhat - napis, który mówi jakiego typu dźwięk ma zagrać:
+ * - "healthyApple" - dżwięk za zjedzenie zdrowego jabłka
+ * - "poisonedApple" - dźwięk za zjedzenie chorego jabłka
+ * - "mouse" - dźwięk za zjedzenie myszy
+ */
 Snake.prototype.playSound = function(forWhat) {
     switch (forWhat) {
         case "healthyApple":
@@ -64,6 +85,10 @@ Snake.prototype.playSound = function(forWhat) {
     }
 };
 
+/**
+ * Metoda porusza węża w kierunku this.directions[1]
+ * @returns {*} - zwraca napisz "win", gdy wygraliśmy, "loss" gdy przegraliśmy lub null, gdy nic się nie stało
+ */
 Snake.prototype.move = function() {
     this.board.getField(this.head[1]).id = 1;
     this.refreshDirection();
@@ -109,10 +134,17 @@ Snake.prototype.move = function() {
     return null;
 };
 
+/**
+ * Metoda ustawia kierunek pełzania węża
+ * @param direction - kierunek pełzania ("left", "right", "up", "down")
+ */
 Snake.prototype.setDirection = function(direction) {
 	this.newDirection = direction;
 };
 
+/**
+ * Metoda na podstawie tego, jaki kierunek pełzania węża wybrał użytkownik, odpowiednio ustawia kierunek, w jakim wąż rzeczywiście ma iść (w nast. odświeżeniu planszy)
+ */
 Snake.prototype.refreshDirection = function() {
     this.directions.shift();
     if (
@@ -130,12 +162,20 @@ Snake.prototype.refreshDirection = function() {
         this.directions[1] = this.directions[0];
 };
 
+/**
+ * Metoda pomocnicza, która ustawia pole na planszy jako zagięte ciało węża
+ */
 Snake.prototype.makeCorner = function() {
     if (this.directions[0] != this.directions[1]) {
         this.board.getField(this.head[1]).orientation = this.directions[0] + "-" + this.directions[1];
     }
 };
 
+/**
+ * Metoda mówi, czy określona pozycja poruszenia się węża nie wywoła jego śmierci
+ * @param position - pozycja węża {col, row}
+ * @returns {boolean} - prawda, gdy ruch jest bezpieczny, fałszy, gdy wąż po takim ruchu zginie
+ */
 Snake.prototype.isGoodMove = function(position) {
 	if (this.board.getField(position) === undefined)
 		return false;
@@ -146,15 +186,26 @@ Snake.prototype.isGoodMove = function(position) {
     return true;
 };
 
+/**
+ * Metoda wywołana, gdy wąż coś zje
+ */
 Snake.prototype.eat = function() {
     this.board.getField(this.head[1]).spriteType = "body";
 };
 
+/**
+ * Metoda służąca za kurczenie się węża, gdy zje zatrute jabłko
+ */
 Snake.prototype.schrink = function() {
     for (var i = 0; this.bodyLength > 2 && i < 4; ++i)
         this.crawl();
 };
 
+/**
+ * Przekształcanie podanej pozaycji pola na napis, mówiący jakie pożywienie jest pod danym polem
+ * @param position - {row, col}, badana pozycja na planszy
+ * @returns {*} - typ pożywienia pod określoną pozycją ("healthyApple", "poisonedApple", "mouse") bądź null, gdy nie ma tam jedzenia
+ */
 Snake.prototype.fieldToString = function(position) {
     var ref = this.board.getField(position);
     if (ref instanceof HealthyAppleField)
@@ -167,6 +218,9 @@ Snake.prototype.fieldToString = function(position) {
         return null;
 };
 
+/**
+ * Metoda, który kurczy węża o 1 pole, wraz z metodą eat pozwala na wrażenie pełzania węża po planszy
+ */
 Snake.prototype.crawl = function() {
     --this.bodyLength;
 	this.board.foreach(this, function(field) {

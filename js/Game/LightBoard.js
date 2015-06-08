@@ -1,6 +1,13 @@
+/**
+ * Konstruktor obiektu LightBoard - obiekt ten zawiera interfejs dla okrojonej wersji planszy (dla WebWorkera)
+ * @constructor
+ */
 function LightBoard() {
 }
 
+/**
+ * Inicjuje / zeruje zmienne używane do zbierania informacji o planszy
+ */
 LightBoard.prototype.initStats = function() {
     this.stats = {
         healthyApples: 0,
@@ -9,11 +16,21 @@ LightBoard.prototype.initStats = function() {
     };
 };
 
+/**
+ * Metoda parsuje planszę w postaci JSON i generuje statystyki dla tej planszy
+ * @param stringifiedBoard
+ */
 LightBoard.prototype.refresh = function(stringifiedBoard) {
     this.board = JSON.parse(stringifiedBoard);
     this.generateStats();
 };
 
+/**
+ * Metoda generuje statystyki takie jak:
+ *  - ilość zatrutych jabłek na planszy
+ *  - ilość zdrowych jabłek
+ *  - ilość myszy, ich pozycja i orientacja
+ */
 LightBoard.prototype.generateStats = function() {
     this.initStats();
     for (var row_i = 0; row_i < this.board.length; ++row_i) {

@@ -40,12 +40,92 @@
 </nav>
 
 <section>
-    <h3>Ogólny opis gry</h3>
-    <p>Dokumentacja kodu w drodze - będzie w postaci opisu ogólnego (tutaj) oraz szczegółowego, w plikach <code>.js</code></p>
+    <h3>Ogólne działanie aplikacji</h3>
+    <p>Plansza do gry jest dwuwymiarową tablicą pól. Każde z pól zawiera metodę <code>draw</code>, która w zależności od parametów (pozycja pola, kierunek, obrót) odpowiednio maluje elementy przy użyciu canvas 2D API i je obraca / przenosi na naszej płaszczyźnie.</p>
+    <p>Działanie aplikacji polega na odświeżaniu co określony czas (nastawiany w ustawieniach, metoda <code>window.setTimeout</code>) wszystkich pól. Wiąże się to z obliczaniem nowych pozycji i namalowaniu wszystkich pozycji.</p>
+    <p>W momencie odświeżania obliczana jest nowa pozycja węża. Później reprezentacja naszej planszy zostaje przesłana do WebWorkera, który:</p>
+    <ul>
+        <li>Oblicza pozycję zdrowych i zatrutych jabłek</li>
+        <li>Oblicza pozycję myszy</li>
+    </ul>
+    <p>Po wykonanych obliczeniach plansza jest wysyłana z powrotem do głównego procesu, która później maluje naszą planszę.</p>
+    <p>Dzięki wykorzystaniu WebWorkera plansza nie jest blokowana gdy wykonywane są obliczenia związanie ze wstawianiem jabłek lub myszy. Gdy plansza nie zdąży się wygenerować to nic gra działa dalej, a pozycje elementów są niezmienione (jedynie pozycja węża się zmieni).</p>
+</section>
+
+<section>
+    <h3>Struktura projektu</h3>
+    <p>Kliknięcie na odpowiednią pozycję powoduje otwarcie w nowej zakładce kodu źródłowego.</p>
+    <p>W plikach <code>.js</code> znajdują się bardziej szczegółowe opiszy poszczególnych metod.</p>
+    <p>By obejrzeć strukturę plików <code>.html</code> należy przejsć do odpowiedniej podstrony i podejrzeć jej źródło.</p>
+    <ul>
+        <li>docs.html - podstrona z dokumentacją techniczną projektu</li>
+        <li>how-to.html - podstrona, w której zawarty jest samouczek do gry</li>
+        <li>index.html - stona główna z grą</li>
+        <li>audio/ - znajdują się tu pliki <code>.mp3</code>, które gry są odtwarzane gdy wąż zje jabłko lub mysz
+            <ul>
+                <li><a href="audio/apple1.mp3" target="_blank">apple1.mp3</a></li>
+                <li><a href="audio/apple2.mp3" target="_blank">apple2.mp3</a></li>
+                <li><a href="audio/mouse1.mp3" target="_blank">mouse1.mp3</a></li>
+                <li><a href="audio/mouse2.mp3" target="_blank">mouse2.mp3</a></li>
+            </ul>
+        </li>
+        <li>css/ - folder ze stylami
+            <ul>
+                <li><a href="css/style.css" target="_blank">style.css</a></li>
+            </ul>
+        </li>
+        <li>img/ - obrazki
+            <ul>
+                <li><a href="img/game_over.png" target="_blank">game_over.png</a> - tło, które jest nakładane na planszę gdy wąż w coś uderzy</li>
+                <li><a href="img/activity_diagram.jpg" target="_blank">activity_diagram.jpg</a> - diagram aktywności</li>
+            </ul>
+        </li>
+        <li>js/
+            <ul>
+                <li><a href="js/examples.js" target="_blank">examples.js - skrypty, które generują przykładowy wygląd pól</a></li>
+                <li><a href="js/jquery-2.1.4.min.js" target="_blank">jquery-2.1.4.min.js</a> - jQuery</li>
+                <li><a href="js/scripts.js" target="_blank">scripts.js</a> - skrypty nie związane z samą grą - sterują elementami na stronie (np. wyświetlacz procentowy, deaktywacja ustawień, uruchamianie i zabijanie gry); dodane została także obsługa <code>string.endsWith</code> i <code>string.startsWith</code> (tzn sprawdzanie, czy napis zaczyna się bądź kończy określonym podciągiem)</li>
+                <li>Game/
+                    <ul>
+                        <li><a href="js/Game/ApplesGenerator.js" target="_blank">ApplesGenerator.js</a> - generator jabłek (zdrowych i zatrutych), używany jest przez WebWorker</li>
+                        <li><a href="js/Game/Game.js" target="_blank">Game.js</a> - trzon aplikacji, znajduje się tam konstuktor inicjalizujący wszystkie pola i rozpoczynający zabawę, a także metody od zatrzymywania / wznawiania / usuwania / odświeżania gry, zmieniania nakładek na planszę (np koniec gry, wstrzymanie itd...) czy też do obsługi akcji kliknięcia na planszę bądź wciśnięcia klawisza</li>
+                        <li><a href="js/Game/LightBoard.js" target="_blank">LightBoard.js</a> - obiekt zawierający interfejs do uproszczonej wersji planszy (tej wysłanej do web-workera); obiekt generuje także statystyki na podstawie planszy np. gdzie znajdują się jabłka czy mysz co jest pomocne dla generatorów</li>
+                        <li><a href="js/Game/MouseGenerator.js" target="_blank">MouseGenerator.js</a> - generator myszy - porusza myszą lub tworzy nową jak poprzednia została zjedzona</li>
+                        <li><a href="js/Game/Randomizer.js" target="_blank">Randomizer.js</a> - obiekt narzędziowy, który zawiera metodę znajdującą pole, które spełnia określone warunki (podpina się funkcję walidującą pole). Funcja losująca działa w ten sposób, że zawsze mamy pewność wylosowania dobrej pozycji (o ile taka jest) w col * row próbach, gdzie col - liczba kolumn planszy, row - liczba rzędów</li>
+                        <li><a href="js/Game/Snake.js" target="_blank">Snake.js</a> - obiekt przechowuje wsystkie informacje o wężu, zawiera też metody do zliczania punktów czy decydujące czy wąż umarł, zjadł jabłko itd...</li>
+                        <li><a href="js/Game/Worker.js" target="_blank">Worker.js</a> - skrypt wykonawczy WebWorkera, gdy dostanie wiadomośc w postaci planszy (<code>this.onmessage</code>) to przetwarza ją i odsyła (<code>this.postMessage</code>)</li>
+                        <li>Board/ - zawiera obiekt Board (plansza) i obiekty typu Field (pole plaszy)
+                            <ul>
+                                <li><a href="js/Game/Board/AppleField.js" target="_blank">AppleField.js</a> - pole typu jabłko, obiekt bazowy dla zatrutego i zdrowego jabłka</li>
+                                <li><a href="js/Game/Board/Board.js" target="_blank">Board.js</a> - odpowiada za przechowywanie odpowiednich pól planszy, dostarcza do nic interfejs dostępowy i pozwala na namalowanie planszy</li>
+                                <li><a href="js/Game/Board/EmptyField.js" target="_blank">EmptyField.js</a> - puste pole</li>
+                                <li><a href="js/Game/Board/Field.js" target="_blank">Field.js</a> - obiekt bazowy, reprezentuje pole, zawiera funkcję rysującą <code>draw</code> wspólną dla obiektów dziedziczących - np. metoda pozwala na przesunięcie lub obrót obiektu canvas 2d na planszy</li>
+                                <li><a href="js/Game/Board/HealthyAppleField.js" target="_blank">HealthyAppleField.js</a> - pole ze zdrowym jabłkiem</li>
+                                <li><a href="js/Game/Board/MouseField.js" target="_blank">MouseField.js</a> - pole z myszą</li>
+                                <li><a href="js/Game/Board/ObstacleField.js" target="_blank">ObstacleField.js</a> - pole z przeszkodą</li>
+                                <li><a href="js/Game/Board/PoisonedAppleField.js" target="_blank">PoisonedAppleField.js</a> - pole z zatrutym jabłkiem</li>
+                                <li><a href="js/Game/Board/SnakeField.js" target="_blank">SnakeField.js</a> - pole z wężem</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>video/ - pliki wideo
+            <ul>
+                <li><a href="video/snake.mp4" target="_blank">snake.mp4</a> - filmik zapętlony w tle nagłówka strony (w znaczniku <code>&lt;header&gt;</code>)</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3>Diagram aktywności</h3>
+    <a href="img/activity_diagram.jpg" target="_blank"><img src="img/activity_diagram.jpg" alt="Diagram aktywności" /></a>
 </section>
 
 <footer>
-    <p><small>Autor: <em>Kamil Drzazga.</em></small></p>
+    <p><small>Autor: <em>Kamil Drzazga</em>.</small></p>
     <p><small>Projekt nr 1 na <em>Techniki Internetowe</em>.</small></p>
 </footer>
 

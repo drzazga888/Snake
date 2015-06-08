@@ -41,15 +41,27 @@
 
 <section id="game">
     <h3>Gra</h3>
+
+    <!-- przycisk rozpoczyna grę - znika, gdy gra się rozpocznie -->
     <button onclick="startGame(event);" class="game-starter">Rozpocznij grę</button>
+
+    <!-- kontener na grę - w nim znajdują się warstwy, które nakładają się na sibie -->
     <div class="layer-wrapper">
+
+        <!-- najniższa warstwa - element canvas na którym malowane są nasze obiekty -->
         <canvas>
             <p>Twoja przeglądarka nie wspiera elementu <em><code>&lt;canvas&gt;</code></em></p>
         </canvas>
+
+        <!-- reszta warst - tylko jedna może być aktywna w tym samym czasie -->
+
+        <!-- warstwa wyświetlana w czasie trwania gry -->
         <div class="layer game-running">
             <p>Punkty: <em><span class="points">0</span></em></p>
             <p>Rekord: <em><span class="max-points">0</span></em></p>
         </div>
+
+        <!-- warstwa wyświetlana gdy gracz grzegra -->
         <div class="layer game-over non-clickable">
             <h4>Koniec gry!</h4>
             <p>Punkty: <em><span class="points">0</span></em></p>
@@ -57,6 +69,8 @@
             <button onclick="stopGame(event);startGame(event);game.play();">Restart</button>
             <button onclick="game.maxPointsHandler.text(0);stopGame(event);">Zakończ grę</button>
         </div>
+
+        <!-- warstwa wyświetlana, gdy gra zostanie rozpoczęta lub przerwana -->
         <div class="layer game-paused non-clickable">
             <h4>Gra zatrzymana / nierozpoczęta</h4>
             <p>Naciśnij przycisk poniżej lub klawisz <kbd>P</kbd> by kontynuować</p>
@@ -64,19 +78,25 @@
             <button onclick="stopGame(event);startGame(event);game.play();">Restart</button>
             <button onclick="game.maxPointsHandler.text(0);stopGame(event);">Zakończ grę</button>
         </div>
+
+        <!-- warstwa wyświetlana, gdy gracz wygra -->
         <div class="layer game-win non-clickable">
             <h4>Zwycięstwo!</h4>
-            <p>Niesamowite! Udało ci się zapełnić wszystkie wolne puste pola na planszy!</p>
+            <p>Niesamowite! Udało ci się zapełnić wszystkie puste pola na planszy!</p>
             <p>Punkty: <em><span class="points">0</span></em></p>
             <p>Rekord: <em><span class="max-points">0</span></em></p>
             <button onclick="stopGame(event);startGame(event);game.play();">Restart</button>
             <button onclick="game.maxPointsHandler.text(0);stopGame(event);">Zakończ grę</button>
         </div>
+
     </div>
+
 </section>
 
 <section id="settings">
     <h3>Ustawienia</h3>
+
+    <!-- poniższy blok pozwala umieścić elementy tak - jeżeli mamy .per50 w .grid, to .per50 rozciągnie się na połowę szerokości strony (gdy mamy odpowiednio dużą rozdzielczość okna -->
     <div class="grid">
         <div class="per50">
             <fieldset>
@@ -119,7 +139,7 @@
 </section>
 
 <footer>
-    <p><small>Autor: <em>Kamil Drzazga.</em></small></p>
+    <p><small>Autor: <em>Kamil Drzazga</em>.</small></p>
     <p><small>Projekt nr 1 na <em>Techniki Internetowe</em>.</small></p>
 </footer>
 

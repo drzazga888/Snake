@@ -1,15 +1,38 @@
+/**
+ * Obiekt ten reprezentuje mysz na planszy
+ * @param ctx - obiekt CanvasRenderingContext2D, który używa się do rysowania
+ * @param position - obiekt, który zawiera pole col i row, jest to pozycja pola na planszy
+ * @param orientation - kierunek patrzenia myszy, możliwości:
+ *  - "top"
+ *  - "bottom"
+ *  - "left"
+ *  - "right"
+ * @constructor
+ */
 function MouseField(ctx, position, orientation) {
     Field.call(this, ctx, position, MouseField.orientationToId(orientation));
     this.orientation = orientation;
 }
 
+/**
+ * Realizowanie dziedziczenia obiektu EmptyField po Field
+ * @type {Field}
+ */
 MouseField.prototype = Object.create(Field.prototype);
 MouseField.prototype.constructor = MouseField;
 
+/**
+ * Metoda wywoływana do narysowania kształtu
+ */
 MouseField.prototype.draw = function() {
     Field.prototype.draw.call(this, MouseField.prototype.drawMouse);
 };
 
+/**
+ * Metoda pozwala zamienić orientację myszy (kierunek jej patrzenia) na odpowiednie ID pole
+ * @param orientation - orientacja myszy
+ * @return odpowiednie ID
+ */
 MouseField.orientationToId = function(orientation) {
     switch (orientation) {
         case "right":
@@ -23,6 +46,9 @@ MouseField.orientationToId = function(orientation) {
     }
 };
 
+/**
+ * Metoda wywoływana do narysowania kształtu
+ */
 MouseField.prototype.draw = function() {
     switch (this.orientation) {
         case "left":
@@ -40,6 +66,9 @@ MouseField.prototype.draw = function() {
     }
 };
 
+/**
+ * Metoda pomocnicza używana przez metodę draw(), maluje mysz na płótnie (canvas)
+ */
 MouseField.prototype.drawMouse = function() {
     this.ctx.fillStyle = "#cde";
     // ciało myszy
